@@ -1,0 +1,20 @@
+dummy app listening at: :::3009
+D:\mean\adminpanel\CoolAdmin-master\client3.js:20
+	  if (err) throw err;
+	           ^
+
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at Object._errnoException (util.js:1019:11)
+    at _exceptionWithHostPort (util.js:1041:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1175:14)
+    --------------------
+    at Protocol._enqueue (D:\mean\adminpanel\CoolAdmin-master\node_modules\mysql\lib\protocol\Protocol.js:145:48)
+    at Protocol.handshake (D:\mean\adminpanel\CoolAdmin-master\node_modules\mysql\lib\protocol\Protocol.js:52:23)
+    at Connection.connect (D:\mean\adminpanel\CoolAdmin-master\node_modules\mysql\lib\Connection.js:130:18)
+    at Object.<anonymous> (D:\mean\adminpanel\CoolAdmin-master\client3.js:19:12)
+    at Module._compile (module.js:624:30)
+    at Object.Module._extensions..js (module.js:635:10)
+    at Module.load (module.js:545:32)
+    at tryModuleLoad (module.js:508:12)
+    at Function.Module._load (module.js:500:3)
+    at Function.Module.runMain (module.js:665:10)
