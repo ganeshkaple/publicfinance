@@ -52,9 +52,9 @@ app.get('/r', function (req, res) {
 
     res.sendFile(__dirname + "/" + "CoolAdmin-master/report.html", {user: req.user});
 });
-app.get('/expens', function (req, res) {
+app.get('/expenses', function (req, res) {
 
-    res.sendFile(__dirname + "/" + "CoolAdmin-master/expenses.html", {user: req.user});
+    res.sendFile(__dirname + "/" + "CoolAdmin-master/expenses2.html", {user: req.user});
 });
 app.get('/loan', function (req, res) {
 
@@ -72,7 +72,7 @@ app.get('/service', function (req, res) {
     //res.sendFile( __dirname + "/" + "CoolAdmin-master/fresh.html",{ user: req.user } );
 //res.sendFile( __dirname + "/" + "web1/test.html",{ user: req.user } );
 //res.sendFile( __dirname + "/" + "web1/button.html",{ user: req.user } );
-    res.sendFile(__dirname + "/" + "CoolAdmin-master/main-page1.html", {user: req.user});
+    res.sendFile(__dirname + "/" + "CoolAdmin-master/dash.html", {user: req.user});
 
     //res.sendFile( __dirname + "/" + "web1/newchart.html",{ user: req.user } );
     //res.sendFile( __dirname + "/" + "web1/trail.html",{ user: req.user } );
@@ -1040,7 +1040,7 @@ app.post('/api/newregister', function (req, res) {
     //log.info('POST Request :: /insert: ');
     if (!!fullname && !!mobile && !!idproof && !!idproofno && !!address) {
         //pool.getConnection(function (err, connection) {
-        connection.query("INSERT INTO registration SET fullname = ?,  mobile = ?,  idproof = ?, idproofno = ?, address = ?", [fullname, mobile, idproof, idproofno, address], function (err, rows, fields) {
+        connection.query("INSERT INTO hero SET fullname = ?,  mobile = ?,  idproof = ?, idproofno = ?, address = ?", [fullname, mobile, idproof, idproofno, address], function (err, rows, fields) {
             if (!!err) {
                 data["newuser"] = "Error Adding data";
                 console.log(err);
@@ -1061,14 +1061,14 @@ app.post('/api/newregister', function (req, res) {
         res.json(data);
     }
 });
-//registration
+//hero
 
 app.get('/api/registeruser', function (req, res) {
     var data = {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT  * from registration WHERE cid = LAST_INSERT_ID();', function (err, rows, fields) {
+    connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1087,14 +1087,14 @@ app.get('/api/registeruser', function (req, res) {
         }
     });
 });
-//registration user
+//hero user
 
 app.get('/api/registerusers', function (req, res) {
     var data = {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT  * FROM registration ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
+    connection.query('SELECT  * FROM hero ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1120,7 +1120,7 @@ app.get('/api/loanuser', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT  * FROM loandetail ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
+    connection.query('SELECT  * FROM loan ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1151,7 +1151,7 @@ app.get('/api/installid/:loan_id', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?', [loan_id], function (err, rows, fields) {
+    connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1181,7 +1181,7 @@ app.get('/api/installide/', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  ', [loan_id], function (err, rows, fields) {
+    connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  ', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1201,10 +1201,10 @@ app.get('/api/installide/', function (req, res) {
     });
     //});
 });
-//installementid
+//installementsid
 
 //LIST Product by ID
-app.get('/api/installement/:installement_id', function (req, res) {
+app.get('/api/installements/:installement_id', function (req, res) {
     var installement_id = req.params.installement_id;
     var data = {
         "error": 1,
@@ -1214,7 +1214,7 @@ app.get('/api/installement/:installement_id', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT installement_id, mydate, installement_amount, loan_id FROM  installement WHERE installement_id  = ?', [installement_id], function (err, rows, fields) {
+    connection.query('SELECT installement_id, mydate, installement_amount, loan_id FROM  installements WHERE installement_id  = ?', [installement_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1245,7 +1245,7 @@ app.get('/api/installementtable/', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT * FROM  installement', function (err, rows, fields) {
+    connection.query('SELECT * FROM  installements', function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1265,7 +1265,7 @@ app.get('/api/installementtable/', function (req, res) {
     });
     //});
 });
-app.get('/api/transactionmodel/', function (req, res) {
+app.get('/api/transactionmodels/', function (req, res) {
     //var installement_id = req.params.installement_id;
     var data = {
         "error": 1,
@@ -1275,7 +1275,7 @@ app.get('/api/transactionmodel/', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT * FROM  transactionmodel ORDER BY  transaction_id DESC LIMIT 5;', function (err, rows, fields) {
+    connection.query('SELECT * FROM  transactionmodels ORDER BY  transaction_id DESC LIMIT 5;', function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1305,7 +1305,7 @@ app.post('/api/transaction/', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT * FROM  transactionmodel  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (err, rows, fields) {
+    connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1325,7 +1325,7 @@ app.post('/api/transaction/', function (req, res) {
     });
     //});
 });
-app.post('/api/loandetailsum/', function (req, res) {
+app.post('/api/loansum/', function (req, res) {
     var loan_id = req.body.loan_id;
     var data = {
         "error": 1,
@@ -1335,7 +1335,7 @@ app.post('/api/loandetailsum/', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT * FROM  transactionmodel  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loandetail INNER JOIN transactionmodel ON loandetail.loan_id = transactionmodel.loan_id  SET loandetail.receivedamt =( SELECT sum(installement_amount) FROM transactionmodel) WHERE transactionmodel.loan_id = ?', [loan_id, loan_id], function (err, rows, fields) {
+    connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loan INNER JOIN transactionmodels ON loan.loan_id = transactionmodels.loan_id  SET loan.receivedamt =( SELECT sum(installement_amount) FROM transactionmodels) WHERE transactionmodels.loan_id = ?', [loan_id, loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1355,8 +1355,8 @@ app.post('/api/loandetailsum/', function (req, res) {
     });
     //});
 });
-//loan id of installement
-//updateinstallement date
+//loan id of installements
+//updateinstallements date
 //UPDATE Product
 //UPDATE Product
 app.post('/api/updatenew', function (req, res) {
@@ -1371,16 +1371,16 @@ app.post('/api/updatenew', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM installement WHERE installement_id = ?', [installement_id], function (error, results, fields) {
+    connection.query('SELECT * FROM installements WHERE installement_id = ?', [installement_id], function (error, results, fields) {
 
         if (results.length > 0) {
             console.log('error3');
             if (results[0].installement_amount == installement_amount) {
                 console.log('error1');
                 console.log(installement_amount);
-                connection.query("DELETE FROM installement WHERE installement_id = ?;INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?;", [installement_id, mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+                connection.query("DELETE FROM installements WHERE installement_id = ?;INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?;", [installement_id, mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
                     if (rows.length !== 0 && !err) {
-                        connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
+                        connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
                                 data["error"] = 0;
@@ -1412,9 +1412,9 @@ app.post('/api/updatenew', function (req, res) {
                 });
             }
             else {
-                connection.query("UPDATE installement SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+                connection.query("UPDATE installements SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
                     if (rows.length !== 0 && !err) {
-                        connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
+                        connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
                                 data["error"] = 0;
@@ -1464,14 +1464,14 @@ app.post('/api/update', function (req, res) {
         "error": 1,
         "product": ""
     };
-    connection.query('SELECT * FROM installement WHERE installement_id = ?', [installement_id], function (error, results, fields) {
+    connection.query('SELECT * FROM installements WHERE installement_id = ?', [installement_id], function (error, results, fields) {
 
         if (results.length > 0) {
             console.log('error3');
             if (results[0].installement_amount == installement_amount) {
                 console.log('error1');
                 console.log(installement_amount);
-                connection.query("DELETE FROM installement WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
+                connection.query("DELETE FROM installements WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
                     if (!!err) {
                         data["product"] = "Error Updating data";
                         console.log(err);
@@ -1486,9 +1486,9 @@ app.post('/api/update', function (req, res) {
                 });
             }
             else {
-                connection.query("UPDATE installement SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+                connection.query("UPDATE installements SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
                     if (rows.length !== 0 && !err) {
-                        connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
+                        connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
                                 data["error"] = 0;
@@ -1538,9 +1538,9 @@ app.post('/api/updatemy', function (req, res) {
         "product": ""
     };
 
-    connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+    connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            connection.query('SELECT * FROM installement ORDER BY installement_id DESC ', function (err, rows, fields) {
+            connection.query('SELECT * FROM installements ORDER BY installement_id DESC ', function (err, rows, fields) {
                 //connection.release();
                 if (rows.length !== 0 && !err) {
                     data["error"] = 0;
@@ -1581,7 +1581,7 @@ app.post('/api/updatemy', function (req, res) {
 
 		console.log('error2');
 		//pool.getConnection(function (err, connection) {
-		connection.query('SELECT * FROM installement WHERE installement_id = ?',[installement_id], function (error, results, fields) {
+		connection.query('SELECT * FROM installements WHERE installement_id = ?',[installement_id], function (error, results, fields) {
 				console.log('error3');
   if([0].installement_amount == installement_amount){
 	   console.log('error5');
@@ -1592,7 +1592,7 @@ app.post('/api/updatemy', function (req, res) {
           "code":200,
           "success":"login sucessfull"
             });*/
-/* connection.query("DELETE FROM installement WHERE installement_id = ? ",[installement_id], function (err, rows, fields) {
+/* connection.query("DELETE FROM installements WHERE installement_id = ? ",[installement_id], function (err, rows, fields) {
     if (!!err) {
         data["product"] = "Error Updating data";
         console.log(err);
@@ -1613,7 +1613,7 @@ app.post('/api/updatemy', function (req, res) {
       });
 }
 }else{
-connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ",[mydate,  installement_amount, loan_id, installement_id, mydate,  installement_amount, loan_id], function (err, rows, fields) {
+connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ",[mydate,  installement_amount, loan_id, installement_id, mydate,  installement_amount, loan_id], function (err, rows, fields) {
           if (!!err) {
               data["product"] = "Error Updating data";
               console.log(err);
@@ -1628,7 +1628,7 @@ connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, l
       });
 
 
-      /*connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ",[mydate,  installement_amount, loan_id, installement_id, mydate,  installement_amount, loan_id], function (err, rows, fields) {
+      /*connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ",[mydate,  installement_amount, loan_id, installement_id, mydate,  installement_amount, loan_id], function (err, rows, fields) {
           if (!!err) {
               data["product"] = "Error Updating data";
               console.log(err);
@@ -1645,7 +1645,7 @@ connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, l
 //}
 
 
-/*connection.query('SELECT  transactionmodel FROM   WHERE loan_id  = ?', [loan_id], function (err, rows, fields) {
+/*connection.query('SELECT  transactionmodels FROM   WHERE loan_id  = ?', [loan_id], function (err, rows, fields) {
         //connection.release();
             if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1680,7 +1680,7 @@ app.post('/api/delete/:installement_id', function (req, res) {
 //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('DELETE FROM installement WHERE  installement_id = ?', [installement_id], function (err, rows, fields) {
+    connection.query('DELETE FROM installements WHERE  installement_id = ?', [installement_id], function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -1698,7 +1698,7 @@ app.post('/api/delete/:installement_id', function (req, res) {
     //});
 });
 //LIST Product by ID
-app.get('/api/installementloan/:installement_id', function (req, res) {
+app.get('/api/installementsloan/:installement_id', function (req, res) {
     var loan_id = req.params.loan_id;
     var data = {
         "error": 1,
@@ -1708,7 +1708,7 @@ app.get('/api/installementloan/:installement_id', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT   mydate, installement_id,  loandetail.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE installement.installement_id  = ?', [installement_id], function (err, rows, fields) {
+    connection.query('SELECT   mydate, installement_id,  loan.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE installements.installement_id  = ?', [installement_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -1728,7 +1728,7 @@ app.get('/api/installementloan/:installement_id', function (req, res) {
     });
     //});
 });
-//Installement table1
+//installements table1
 
 /*app.get('/api/install', function (req, res) {
 	var data = {
@@ -1879,7 +1879,7 @@ app.post('/api/test/', function (req, res) {
 
 
 */
-//loandetail
+//loan
 
 app.post('/api/loanusers/', function (req, res) {
     var loan_id = req.body.loan_id;
@@ -1891,7 +1891,6 @@ app.post('/api/loanusers/', function (req, res) {
     var dayDifference = req.body.dayDifference;
     var interest = req.body.interest;
 
-    var trepayamount = req.body.trepayamount;
     var cid = req.body.cid;
     //var	mydate = req.body.mydate;
     //var totalmydate = sizeof(mydate);
@@ -1907,7 +1906,7 @@ app.post('/api/loanusers/', function (req, res) {
     // for(var i=0;i<totalmydate; i++) {
     //	var InsertUsername = mydate[i];
     //pool.getConnection(function (err, connection) {
-    connection.query("INSERT INTO loandetail SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?, interest = ?, trepayamount = ?, cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, trepayamount, cid], function (err, rows, fields) {
+    connection.query("INSERT INTO loan SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?, interest = ?, cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, cid], function (err, rows, fields) {
         if (!!err) {
             data["newuser"] = "Error Adding data";
             console.log(err);
@@ -1915,7 +1914,7 @@ app.post('/api/loanusers/', function (req, res) {
         } else {
             data["error"] = 0;
             data["newuser"] = "new user Added Successfully";
-            console.log("Added: " + [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, trepayamount, cid, loan_id]);
+            console.log("Added: " + [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, cid, loan_id]);
             //log.info("Added: " + [name, description, price]);
         }
         res.json(data);
@@ -1925,7 +1924,50 @@ app.post('/api/loanusers/', function (req, res) {
     //}
 
 });
-//laon amount and installement
+app.post('/api/loanuserss/', function (req, res) {
+    var loan_id = req.body.loan_id;
+    var loan_amount = req.body.loan_amount;
+    var startdate = req.body.startdate;
+    var enddate = req.body.enddate;
+    var installementtype = req.body.installementtype;
+    var noofinstallement = req.body.noofinstallement;
+    var dayDifference = req.body.dayDifference;
+
+
+    var cid = req.body.cid;
+    //var	mydate = req.body.mydate;
+    //var totalmydate = sizeof(mydate);
+    //interest trepayamount installement_amount mydate
+    console.log(loan_amount);
+    var data = {
+        "error": 1,
+        "newuser": ""
+    };
+    //message='';
+    console.log('POST Request :: /insert: ');
+    //log.info('POST Request :: /insert: ');
+    // for(var i=0;i<totalmydate; i++) {
+    //	var InsertUsername = mydate[i];
+    //pool.getConnection(function (err, connection) {
+    connection.query("INSERT INTO loan SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?,  cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, cid], function (err, rows, fields) {
+        if (!!err) {
+            data["newuser"] = "Error Adding data";
+            console.log(err);
+            //log.error(err);
+        } else {
+            data["error"] = 0;
+            data["newuser"] = "new user Added Successfully";
+            console.log("Added: " + [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, cid, loan_id]);
+            //log.info("Added: " + [name, description, price]);
+        }
+        res.json(data);
+        // message = "Succesfully! Your account has been created.";
+
+    });
+    //}
+
+});
+//laon amount and installements
 
 /*app.post('/api/loaninstall/', function (req, res) {
 
@@ -1992,7 +2034,7 @@ app.post('/api/loanusers/', function (req, res) {
 	//log.info('POST Request :: /insert: ');
     if (!!receivedamt &&  !!transactionDate && !!description ) {
 		//pool.getConnection(function (err, connection) {
-			connection.query("INSERT INTO transactionmodel SET receivedamt = ?,  transactionDate = ?,  description = ?;",[receivedamt, transactionDate, description], function (err, rows, fields) {
+			connection.query("INSERT INTO transactionmodels SET receivedamt = ?,  transactionDate = ?,  description = ?;",[receivedamt, transactionDate, description], function (err, rows, fields) {
 				if (!!err) {
 					data["newuser"] = "Error Adding data";
 					console.log(err);
@@ -2032,7 +2074,7 @@ app.post('/api/insertmydate', function (req, res) {
 
         var insertuser = mydate[i];
 
-        connection.query("INSERT INTO installement SET loan_id = ?, installement_amount = ?, mydate = ?", [loan_id, installement_amount, insertuser], function (error, results) {
+        connection.query("INSERT INTO installements SET loan_id = ?, installement_amount = ?, mydate = ?", [loan_id, installement_amount, insertuser], function (error, results) {
 
             if (!error) {
                 console.log("success");
@@ -2057,7 +2099,7 @@ app.post('/api/transactionloanid', function (req, res) {
     //log.info('POST Request :: /insert: ');
 
 
-    connection.query("INSERT INTO transactionmodel SET loan_id = ?, mydate = ?", [loan_id], function (error, results) {
+    connection.query("INSERT INTO transactionmodels SET loan_id = ?, mydate = ?", [loan_id], function (error, results) {
 
         if (!error) {
             console.log("success");
@@ -2488,7 +2530,7 @@ app.post('/api/report', function (req, res) {
         "error": 1,
         "report": ""
     };
-	    connection.query('SELECT * FROM  loandetail WHERE  fdate   BETWEEN ? AND ?',[fdate,tdate], function (err, rows, fields) {
+	    connection.query('SELECT * FROM  loan WHERE  fdate   BETWEEN ? AND ?',[fdate,tdate], function (err, rows, fields) {
 		//connection.query('SELECT * FROM report WHERE fdate = ? AND tdate = ?',[fdate,tdate], function (err, rows, fields) {
 
 			if (rows.length !== 0 && !err) {
@@ -2993,7 +3035,7 @@ app.get('/notification', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT count(comment_status) as cid FROM registration where comment_status = 0;SELECT * FROM registration ORDER BY cid DESC LIMIT 5;', function (err, rows, fields) {
+    connection.query('SELECT count(comment_status) as cid FROM hero where comment_status = 0;SELECT * FROM hero ORDER BY cid DESC LIMIT 5;', function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3018,7 +3060,7 @@ app.get('/updatenote', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('UPDATE registration SET comment_status = 1 WHERE comment_status = 0', function (err, rows, fields) {
+    connection.query('UPDATE hero SET comment_status = 1 WHERE comment_status = 0', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -3040,7 +3082,7 @@ app.get('/updatenote', function (req, res) {
 app.post('/sort', function (req, res) {
     var fdate = req.body.fdate;
     var tdate = req.body.tdate;
-    connection.query('SELECT * FROM loandetail WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (error, results) {
+    connection.query('SELECT * FROM loan WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (error, results) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3054,7 +3096,7 @@ app.post('/datesort', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM loandetail WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
+    connection.query('SELECT * FROM loan WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3082,7 +3124,7 @@ app.post('/lent', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT loan_id, loan_amount, startdate FROM loandetail WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
+    connection.query('SELECT loan_amount, loan.loan_id, hero.cid,  noofinstallement, receivedamt, fullname, loan.startdate,  mobile FROM hero JOIN  loan ON hero.cid = loan.cid  WHERE  loan.startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3108,7 +3150,7 @@ app.post('/earned', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT loan_id  FROM loandetail WHERE  startdate   BETWEEN ? AND ? AND installement_amount IS NOT NULL', [fdate, tdate], function (err, rows, fields) {
+    connection.query('SELECT loan_id  FROM loan WHERE  startdate   BETWEEN ? AND ? AND installement_amount IS NOT NULL', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3133,7 +3175,7 @@ app.post('/receive', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT loan_id, receivedamt, startdate  FROM loandetail WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
+    connection.query('SELECT loan_id, receivedamt, startdate  FROM loan WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3158,7 +3200,7 @@ app.get('/all', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM loandetail', function (err, rows, fields) {
+    connection.query('SELECT * FROM loan', function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3190,7 +3232,7 @@ app.post('/api/report', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM  loandetail WHERE   startdate   BETWEEN ? AND ?', [fdate, tdate], function (err, rows, fields) {
+    connection.query('SELECT * FROM  loan WHERE   startdate   BETWEEN ? AND ?', [fdate, tdate], function (err, rows, fields) {
         //connection.query('SELECT * FROM report WHERE fdate = ? AND tdate = ?',[fdate,tdate], function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
@@ -3218,7 +3260,7 @@ app.get('/newuser', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM installement ORDER BY installement_id DESC;', function (err, rows, fields) {
+    connection.query('SELECT * FROM installements ORDER BY installement_id DESC;', function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3243,7 +3285,7 @@ app.get('/api/books/', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM registration;', function (err, rows, fields) {
+    connection.query('SELECT * FROM hero;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -3269,7 +3311,7 @@ app.get('/api/books3/', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT  loan_amount, loandetail.loan_id, registration.cid,  noofinstallement, receivedamt, fullname,  mobile FROM registration JOIN  loandetail ON registration.cid = loandetail.cid ', function (err, rows, fields) {
+    connection.query('SELECT  loan_amount, loan.loan_id, hero.cid,  noofinstallement, receivedamt, fullname,  mobile FROM hero JOIN  loan ON hero.cid = loan.cid ', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -3293,7 +3335,7 @@ app.get('/api/books2/', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT * FROM loandetail;', function (err, rows, fields) {
+    connection.query('SELECT * FROM loan;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -3317,7 +3359,7 @@ app.get('/api/books1/', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT  sum(receivedamt) as RAmount,sum(loan_amount) as LAmount FROM loandetail;', function (err, rows, fields) {
+    connection.query('SELECT  sum(receivedamt) as RAmount,sum(loan_amount) as LAmount FROM loan;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
@@ -3348,7 +3390,7 @@ app.get('/api/table1/:cid', function (req, res) {
     console.log("GET request :: /list/" + cid);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT registration.cid, loandetail.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM registration JOIN  loandetail ON registration.cid = loandetail.cid WHERE registration.cid  = ?', [cid], function (err, rows, fields) {
+    connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE hero.cid  = ?', [cid], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3381,7 +3423,7 @@ app.get('/api/table2/:loan_id', function (req, res) {
     console.log("GET request :: /list/" + loan_id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT registration.cid, loandetail.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM registration JOIN  loandetail ON registration.cid = loandetail.cid WHERE loandetail.loan_id  = ?', [loan_id], function (err, rows, fields) {
+    connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3403,6 +3445,7 @@ app.get('/api/table2/:loan_id', function (req, res) {
 });
 
 
+
 //loan details
 
 app.get('/api/tables/:loan_id', function (req, res) {
@@ -3416,7 +3459,7 @@ app.get('/api/tables/:loan_id', function (req, res) {
     console.log("GET request :: /list/" + loan_id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT   installement.mydate, installement.installement_id, loandetail.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?', [loan_id], function (err, rows, fields) {
+    connection.query('SELECT   installements.mydate, installements.installement_id, loan.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3466,7 +3509,7 @@ app.get('/api/expendituressum', function (req, res) {
         }
     });
 });
-app.get('/api/loandetaillisttable', function (req, res) {
+app.get('/api/loanlisttable', function (req, res) {
 
     var data = {
         "error": 1,
@@ -3476,7 +3519,7 @@ app.get('/api/loandetaillisttable', function (req, res) {
     //console.log("GET request :: /list/" + id);
     //log.info("GET request :: /list/" + id);
     //pool.getConnection(function (err, connection) {
-    connection.query('SELECT * from loandetail', function (err, rows, fields) {
+    connection.query('SELECT * from loan', function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["report"] = rows;
@@ -3497,14 +3540,11 @@ app.get('/api/loandetaillisttable', function (req, res) {
     });
 });
 app.post('/api/expend', function (req, res) {
-    var Room_Rent = req.body.Room_Rent;
-    var Light_Bill = req.body.Light_Bill;
-    var Mobile_Bill = req.body.Mobile_Bill;
+
     var Payment = req.body.Payment;
-    var Petrol = req.body.Petrol;
-    var Others = req.body.Others;
+    var expenses = req.body.expenses;
     var date = req.body.date;
-    console.log(Room_Rent);
+
     var data = {
         "error": 1,
         "expenditure": ""
@@ -3512,9 +3552,9 @@ app.post('/api/expend', function (req, res) {
     //message='';
     console.log('POST Request :: /insert: ');
     //log.info('POST Request :: /insert: ');
-    if (!!Room_Rent && !!Light_Bill && !!Mobile_Bill && !!Payment && !!Petrol && !!Others && !!date) {
+    if (!!Payment && !!expenses && !!date) {
         //pool.getConnection(function (err, connection) {
-        connection.query("INSERT INTO expenditure SET Room_Rent = ?, Light_Bill = ?, Mobile_Bill = ?, Payment = ?, Petrol = ?,  Others = ?, date = ?", [Room_Rent, Light_Bill, Mobile_Bill, Payment, Petrol, Others, date], function (err, rows, fields) {
+        connection.query("INSERT INTO expenditure SET money = ?, expenses = ?,  date = ?", [Payment, expenses, date], function (err, rows, fields) {
             if (!!err) {
                 data["expenditure"] = "Error Adding data";
                 console.log(err);
@@ -3522,7 +3562,7 @@ app.post('/api/expend', function (req, res) {
             } else {
                 data["error"] = 0;
                 data["expenditure"] = "new user Added Successfully";
-                console.log("Added: " + [Room_Rent, Light_Bill, Mobile_Bill, Payment, Petrol, Others, date]);
+                console.log("Added: " + [Payment, expenses, date]);
                 //log.info("Added: " + [name, description, price]);
             }
             res.json(data);
@@ -3531,7 +3571,7 @@ app.post('/api/expend', function (req, res) {
         });
 
     } else {
-        data["expenditure"] = "Please provide all required data (i.e : Room_Rent, Light_Bill, Mobile_Bill, Payment, Petrol, Others, date)";
+        data["expenditure"] = "Please provide all required data (i.e : Payment,  expenses, date)";
         res.json(data);
     }
 });
@@ -3541,7 +3581,7 @@ app.get('/api/roomrent', function (req, res) {
         "error": 1,
         "Room_Rent": ""
     };
-    connection.query('SELECT sum(Room_Rent) as Room_Rents FROM expenditure;SELECT Room_Rent,date FROM expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Room_Rents FROM expenditure WHERE expenses ='Room_Rent' ;SELECT money,date FROM expenditure WHERE expenses ='Room_Rent'", function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             data["error"] = 0;
             data["Room_Rent"] = rows;
@@ -3568,7 +3608,7 @@ app.get('/api/light_bill', function (req, res) {
         "error": 1,
         "light_bill": ""
     };
-    connection.query('SELECT sum(Light_Bill) as Light_Bills FROM expenditure;SELECT Light_Bill,date from expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Light_Bills FROM expenditure WHERE expenses ='Light_Bill';SELECT money,date from expenditure WHERE expenses ='Light_Bill'", function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3596,7 +3636,7 @@ app.get('/api/mobile_bill', function (req, res) {
         "error": 1,
         "mobile_bill": ""
     };
-    connection.query('SELECT sum(Mobile_Bill) as Mobile_Bills FROM expenditure;SELECT Mobile_Bill,date from expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Mobile_Bills FROM expenditure WHERE expenses ='Mobile_Bill';SELECT money,date from expenditure WHERE expenses ='Mobile_Bill'", function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3624,7 +3664,7 @@ app.get('/api/payment', function (req, res) {
         "error": 1,
         "payment": ""
     };
-    connection.query('SELECT sum(Payment) as Payments FROM expenditure;SELECT Payment,date from expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Payments FROM expenditure WHERE expenses ='Payment';SELECT money,date from expenditure WHERE expenses ='Payment'", function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3652,7 +3692,7 @@ app.get('/api/petrol', function (req, res) {
         "error": 1,
         "Petrol": ""
     };
-    connection.query('SELECT sum(Petrol) as Petrols FROM expenditure;SELECT Petrol,date from expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Petrols FROM expenditure WHERE expenses ='Petrol';SELECT money,date from expenditure WHERE expenses ='Petrol'", function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3680,7 +3720,7 @@ app.get('/api/others', function (req, res) {
         "error": 1,
         "Others": ""
     };
-    connection.query('SELECT sum(Others) as Otherss FROM expenditure;SELECT Others,date from expenditure', function (err, rows, fields) {
+    connection.query("SELECT sum(money) as Otherss FROM expenditure WHERE expenses ='Others';SELECT money,date from expenditure WHERE expenses ='Others'", function (err, rows, fields) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
@@ -3709,7 +3749,7 @@ app.get('/api/others', function (req, res) {
 
 //last insert newuserid:
 app.get('/mobile/lastinsertnewuser', function (req, res) {
-    connection.query('SELECT  * from registration WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
+    connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3727,6 +3767,7 @@ app.post('/mobile/newloanusers/', function (req, res) {
 
     var trepayamount = req.body.trepayamount;
     var cid = req.body.cid;
+    var userid = req.body.userid;
     //var	mydate = req.body.mydate;
     //var totalmydate = sizeof(mydate);
     //interest trepayamount installement_amount mydate
@@ -3737,7 +3778,7 @@ app.post('/mobile/newloanusers/', function (req, res) {
     // for(var i=0;i<totalmydate; i++) {
     //	var InsertUsername = mydate[i];
     //pool.getConnection(function (err, connection) {
-    connection.query("INSERT INTO loandetail SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?, interest = ?, trepayamount = ?, cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, trepayamount, cid], function (error, results, fields) {
+    connection.query("INSERT INTO loan SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?, interest = ?, trepayamount = ?, cid = ?, userid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, trepayamount, cid, userid], function (error, results, fields) {
         if (error) {
             res.json({
                 status: false,
@@ -3752,46 +3793,76 @@ app.post('/mobile/newloanusers/', function (req, res) {
         }
     });
 });
+app.post('/mobile/newmultiuser/', function (req, res) {
+    var userid = req.body.userid;
+    var name = req.body.name;
+    var mobile = req.body.mobile;
+    var password = req.body.password;
 
+    //var	mydate = req.body.mydate;
+    //var totalmydate = sizeof(mydate);
+    //interest trepayamount installement_amount mydate
+
+    //message='';
+    console.log('POST Request :: /insert: ');
+    //log.info('POST Request :: /insert: ');
+    // for(var i=0;i<totalmydate; i++) {
+    //	var InsertUsername = mydate[i];
+    //pool.getConnection(function (err, connection) {
+    connection.query("INSERT INTO multiuser SET userid = ?, name = ?, mobile = ?, password = ?", [userid, name, mobile, password], function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "newmultiuser registered sucessfully"
+            });
+        }
+    });
+});
 //last insert newuserid:
-app.get('/mobile/loandetailloanact/:cid', function (req, res) {
+app.get('/mobile/loanloanact/:cid', function (req, res) {
     var cid = req.params.cid;
-    connection.query('SELECT  * from loandetail WHERE cid = ?;', [cid], function (error, results, fields) {
+    connection.query('SELECT  * from loan WHERE cid = ?;', [cid], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
-//insert installement amount
+//insert installements amount
 
 //loan records
 //last insert newuserid:
-app.get('/mobile/loandetaillist', function (req, res) {
-    connection.query('SELECT  * from loandetail', function (error, results, fields) {
+app.get('/mobile/loanlist', function (req, res) {
+    connection.query('SELECT  * from loan', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
-/*  app.get('/api/loandetaillisttable', function (req, res) {
-   connection.query('SELECT  * from loandetail', function (error, results, fields) {
+/*  app.get('/api/loanlisttable', function (req, res) {
+   connection.query('SELECT  * from loan', function (error, results, fields) {
 	  if (error) throw error;
 	  res.end(JSON.stringify(results));
 	});
 }); */
 app.get('/mobile/installmentlist', function (req, res) {
-    connection.query('SELECT  * from installement', function (error, results, fields) {
+    connection.query('SELECT  * from installements', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 app.post('/mobile/lastinsertnewuserloan_id', function (req, res) {
     var loan_id = req.body.loan_id;
-    connection.query('SELECT  * from loandetail WHERE loan_id = ?', [loan_id], function (error, results, fields) {
+    connection.query('SELECT  * from loan WHERE loan_id = ?', [loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 app.post('/mobile/insertmydate', function (req, res) {
-
+    var userid = req.body.userid;
     var loan_id = req.body.loan_id;
     var installement_amount = req.body.installement_amount;
     var mydate = req.body.mydate;
@@ -3805,7 +3876,7 @@ app.post('/mobile/insertmydate', function (req, res) {
 
         var insertuser = mydate[i];
 
-        connection.query("INSERT INTO installement SET loan_id = ?, installement_amount = ?, mydate = ?", [loan_id, installement_amount, insertuser], function (error, results) {
+        connection.query("INSERT INTO installements SET loan_id = ?, userid = ?, installement_amount = ?, mydate = ?", [loan_id, userid, installement_amount, insertuser], function (error, results) {
 
             if (!error) {
                 console.log("success");
@@ -3829,7 +3900,7 @@ app.get('/mobile/table1/:cid', function (req, res) {
 
     console.log("GET request :: /list/" + cid);
 
-    connection.query('SELECT registration.cid, loandetail.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM registration JOIN  loandetail ON registration.cid = loandetail.cid WHERE registration.cid  = ?', [cid], function (error, results, fields) {
+    connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE hero.cid  = ?', [cid], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3839,7 +3910,7 @@ app.get('/mobile/installid/:loan_id', function (req, res) {
     var loan_id = req.params.loan_id;
 
 
-    connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?', [loan_id], function (error, results, fields) {
+    connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3847,7 +3918,7 @@ app.get('/mobile/installid/:loan_id', function (req, res) {
 
 app.get('/mobile/tables/:loan_id', function (req, res) {
     var loan_id = req.params.loan_id;
-    connection.query('SELECT   installement.mydate, installement.installement_id, loandetail.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?', [loan_id], function (error, results, fields) {
+    connection.query('SELECT   installements.mydate, installements.installement_id, loan.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3855,15 +3926,15 @@ app.get('/mobile/tables/:loan_id', function (req, res) {
 //delete install
 app.post('/mobile/delete/:installement_id', function (req, res) {
     var installement_id = req.params.installement_id;
-    connection.query('DELETE FROM installement WHERE  installement_id = ?', [installement_id], function (error, results, fields) {
+    connection.query('DELETE FROM installements WHERE  installement_id = ?', [installement_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 //LIST Product by ID
-app.get('/mobile/installementloan/:installement_id', function (req, res) {
+app.get('/mobile/installementsloan/:installement_id', function (req, res) {
     var loan_id = req.params.loan_id;
-    connection.query('SELECT   mydate, installement_id,  loandetail.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE installement.installement_id  = ?', [installement_id], function (error, results, fields) {
+    connection.query('SELECT   mydate, installement_id,  loan.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE installements.installement_id  = ?', [installement_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3878,22 +3949,22 @@ app.post('/mobile/update', function (req, res) {
     console.log(installement_amount);
     var loan_id = req.body.loan_id;
 
-    connection.query('SELECT * FROM installement WHERE installement_id = ?', [installement_id], function (error, results, fields) {
+    connection.query('SELECT * FROM installements WHERE installement_id = ?', [installement_id], function (error, results, fields) {
 
         if (results.length > 0) {
             console.log('error3');
             if (results[0].installement_amount == installement_amount) {
                 console.log('error1');
                 console.log(installement_amount);
-                connection.query("DELETE FROM installement WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
+                connection.query("DELETE FROM installements WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
                     if (error) throw error;
                     res.end(JSON.stringify(results));
                 });
             }
             else {
-                connection.query("UPDATE installement SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+                connection.query("UPDATE installements SET mydate = ?, installement_amount = installement_amount - ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
                     if (rows.length !== 0 && !err) {
-                        connection.query('SELECT   installement.mydate, installement.installement_id, installement.loan_id, installement.installement_amount  FROM loandetail JOIN installement  ON   loandetail.loan_id = installement.loan_id  WHERE loandetail.loan_id  = ?; ', [loan_id], function (error, results, fields) {
+                        connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (error, results, fields) {
                             //connection.release();
                             if (error) throw error;
                             res.end(JSON.stringify(results));
@@ -3920,7 +3991,7 @@ app.post('/mobile/transactiontransaction_id/', function (req, res) {
     var transaction_id = req.body.transaction_id;
 
 
-    connection.query('SELECT * FROM  transactionmodel  WHERE transaction_id = ? ORDER BY  transaction_id DESC', [transaction_id], function (error, results, fields) {
+    connection.query('SELECT * FROM  transactionmodels  WHERE transaction_id = ? ORDER BY  transaction_id DESC', [transaction_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3929,30 +4000,30 @@ app.post('/mobile/transactionloan_id/', function (req, res) {
     var loan_id = req.body.loan_id;
 
 
-    connection.query('SELECT * FROM  transactionmodel  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (error, results, fields) {
+    connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 app.get('/mobile/transaction/', function (req, res) {
 
-    connection.query('SELECT * FROM  transactionmodel', function (error, results, fields) {
+    connection.query('SELECT * FROM  transactionmodels', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 //loan detail sum
-app.post('/mobile/loandetailsum/', function (req, res) {
+app.post('/mobile/loansum/', function (req, res) {
     var loan_id = req.body.loan_id;
 
 
-    connection.query('SELECT * FROM  transactionmodel  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loandetail INNER JOIN transactionmodel ON loandetail.loan_id = transactionmodel.loan_id  SET loandetail.receivedamt =( SELECT sum(installement_amount) FROM transactionmodel) WHERE transactionmodel.loan_id = ?', [loan_id, loan_id], function (error, results, fields) {
+    connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loan INNER JOIN transactionmodels ON loan.loan_id = transactionmodels.loan_id  SET loan.receivedamt =( SELECT sum(installement_amount) FROM transactionmodels) WHERE transactionmodels.loan_id = ?', [loan_id, loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
-app.get('/mobile/transactionmodel/', function (req, res) {
-    connection.query('SELECT * FROM  transactionmodel ORDER BY  transaction_id DESC LIMIT 5;', function (error, results, fields) {
+app.get('/mobile/transactionmodels/', function (req, res) {
+    connection.query('SELECT * FROM  transactionmodels ORDER BY  transaction_id DESC LIMIT 5;', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -3968,9 +4039,9 @@ app.post('/mobile/updatemy', function (req, res) {
     var loan_id = req.body.loan_id;
 
 
-    connection.query("UPDATE installement SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodel SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
+    connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            connection.query('SELECT * FROM installement ORDER BY installement_id DESC ', function (error, results, fields) {
+            connection.query('SELECT * FROM installements ORDER BY installement_id DESC ', function (error, results, fields) {
                 if (error) throw error;
                 res.end(JSON.stringify(results));
             });
@@ -3981,22 +4052,22 @@ app.post('/mobile/updatemy', function (req, res) {
 
 });
 
-//installement table1
+//installements table1
 
 
-app.get('/mobile/installementloan_id/:loan_id', function (req, res) {
+app.get('/mobile/installementsloan_id/:loan_id', function (req, res) {
     var loan_id = req.params.loan_id;
-    connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installement   WHERE loan_id = ?', [loan_id], function (error, results, fields) {
+    connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installements   WHERE loan_id = ?', [loan_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 });
 
-app.get('/mobile/installementloan/:installement_id', function (req, res) {
+app.get('/mobile/installementsloan/:installement_id', function (req, res) {
     var loan_id = req.params.loan_id;
 
 
-    connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installement WHERE installement_id  = ?', [installement_id], function (error, results, fields) {
+    connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installements WHERE installement_id  = ?', [installement_id], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -4004,20 +4075,21 @@ app.get('/mobile/installementloan/:installement_id', function (req, res) {
 });
 app.get('/mobile/registeruser', function (req, res) {
 
-    connection.query('SELECT  * from registration WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
+    connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 
 
 });
-//registration user
+//hero user
+
 
 
 //LOAN ID Password
 app.get('/mobile/loanuser', function (req, res) {
 
-    connection.query('SELECT  * FROM loandetail ORDER BY cid DESC LIMIT 1;', function (error, results, fields) {
+    connection.query('SELECT  * FROM loan ORDER BY cid DESC LIMIT 1;', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -4026,9 +4098,10 @@ app.get('/mobile/loanuser', function (req, res) {
 });
 
 
+
 app.get('/mobile/newuser', function (req, res) {
 
-    connection.query('SELECT * FROM installement ORDER BY installement_id DESC;', function (error, results, fields) {
+    connection.query('SELECT * FROM installements ORDER BY installement_id DESC;', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -4040,7 +4113,7 @@ app.get('/mobile/notification', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('SELECT count(comment_status) as cid FROM registration where comment_status = 0;SELECT * FROM registration ORDER BY cid DESC LIMIT 5;', function (error, results, fields) {
+    connection.query('SELECT count(comment_status) as cid FROM hero where comment_status = 0;SELECT * FROM hero ORDER BY cid DESC LIMIT 5;', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -4052,7 +4125,7 @@ app.get('/mobile/updatenote', function (req, res) {
         "error": 1,
         "report": ""
     };
-    connection.query('UPDATE registration SET comment_status = 1 WHERE comment_status = 0', function (error, results, fields) {
+    connection.query('UPDATE hero SET comment_status = 1 WHERE comment_status = 0', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
@@ -4076,7 +4149,7 @@ app.get('/mobile/getexpenditure', function (req, res) {
         res.end(JSON.stringify(results));
     });
 });
-app.get('/mobile/getexpenditureid/:id', function (req, res) {
+app.post('/mobile/getexpenditureid', function (req, res) {
     var id = req.param.id;
 
     connection.query('SELECT * from expenditure  where id = ?', [id], function (error, results, fields) {
@@ -4110,7 +4183,88 @@ app.post('/mobile/expend', function (req, res) {
         }
     });
 });
+//deleted functionalities
 
+app.post('/mobile/customerdelete', function (req, res) {
+
+    var cid = req.body.cid;
+    console.log(cid);
+    connection.query("DELETE FROM hero  WHERE cid = ?", [cid], function (error, results, fields) {
+
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "deleted customer record successfully.."
+            });
+        }
+    });
+});
+app.post('/mobile/loandelete', function (req, res) {
+
+    var loan_id = req.body.loan_id;
+    console.log(loan_id);
+    connection.query("DELETE FROM loan  WHERE loan_id = ?", [loan_id], function (error, results, fields) {
+
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "deleted loan id  successfully.."
+            });
+        }
+    });
+});
+app.post('/mobile/transactionmodeldelete', function (req, res) {
+
+    var transaction_id = req.body.transaction_id;
+    console.log(transaction_id);
+    connection.query("DELETE FROM transactionmodels  WHERE transaction_id = ?", [transaction_id], function (error, results, fields) {
+
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "deleted transaction id  successfully.."
+            });
+        }
+    });
+});
+app.post('/mobile/installementdelete', function (req, res) {
+
+    var installement_id = req.body.installement_id;
+    console.log(installement_id);
+    connection.query("DELETE FROM installements  WHERE  installement_id = ?", [installement_id], function (error, results, fields) {
+
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "deleted installment id  successfully.."
+            });
+        }
+    });
+});
 app.get('/mobile/roomrent', function (req, res) {
 
     connection.query('SELECT sum(Room_Rent) as Room_Rents FROM expenditure;SELECT Room_Rent,date FROM expenditure', function (error, results, fields) {
@@ -4165,13 +4319,15 @@ app.get('/mobile/others', function (req, res) {
 });
 //mobile new apis list:
 app.post('/mobile/newregister', function (req, res) {
+    var userid = req.body.userid;
+    var cid = req.body.cid;
     var fullname = req.body.fullname;
     var mobile = req.body.mobile;
     var idproof = req.body.idproof;
     var idproofno = req.body.idproofno;
     var address = req.body.address;
 
-    connection.query("INSERT INTO registration SET fullname = ?,  mobile = ?,  idproof = ?, idproofno = ?, address = ?", [fullname, mobile, idproof, idproofno, address], function (error, results, fields) {
+    connection.query("INSERT INTO hero SET userid = ?, cid = ?, fullname = ?,  mobile = ?,  idproof = ?, idproofno = ?, address = ?", [userid, cid, fullname, mobile, idproof, idproofno, address], function (error, results, fields) {
         if (error) {
             res.json({
                 status: false,
@@ -4186,36 +4342,63 @@ app.post('/mobile/newregister', function (req, res) {
         }
     });
 });
-//registration
+//hero
 
 app.post('/mobile/registerusercid', function (req, res) {
     var cid = req.body.cid;
 
-    connection.query('SELECT  * from registration WHERE cid = ?', [cid], function (error, results, fields) {
+    connection.query('SELECT  * from hero WHERE cid = ?', [cid], function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 
 });
-//registration user
+//hero user
 
 app.get('/mobile/registerusers', function (req, res) {
 
-    connection.query('SELECT  * FROM registration ORDER BY cid DESC;', function (error, results, fields) {
+    connection.query('SELECT  * FROM hero ORDER BY cid DESC;', function (error, results, fields) {
         if (error) throw error;
         res.end(JSON.stringify(results));
     });
 
 
 });
+app.get('/mobile/registermultiusers', function (req, res) {
 
-var server = app.listen(3009, function () {
+    connection.query('SELECT  * FROM multiuser ORDER BY userid DESC;', function (error, results, fields) {
+        if (error) throw error;
+        res.end(JSON.stringify(results));
+    });
 
-    var host = server.address().address;
+
+});
+app.post('/mobile/newexpenses', function (req, res) {
+    var userid = req.body.userid;
+    var money = req.body.money;
+    var expenses = req.body.expenses;
+    var date = req.body.date;
+
+    connection.query("INSERT INTO expenditure SET userid, money = ?,  expenses = ?,  date = ?", [userid, money, expenses, date], function (error, results, fields) {
+        if (error) {
+            res.json({
+                status: false,
+                message: 'there are some error with query'
+            })
+        } else {
+            console.log('The solution is: ', results);
+            res.send({
+                "code": 200,
+                "success": "new expenditure inserted  sucessfully"
+            });
+        }
+    });
+});
+var server = app.listen(3306, function () {
+
+    var host = 'ec2-34-224-169-153.compute-1.amazonaws.com';
     var port = server.address().port;
 
     console.log("dummy app listening at: " + host + ":" + port);
 
 });
-
-module.exports = app;
