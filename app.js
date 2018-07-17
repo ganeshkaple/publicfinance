@@ -1645,6 +1645,7 @@ connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, 
 //}
 
 
+
 /*connection.query('SELECT  transactionmodels FROM   WHERE loan_id  = ?', [loan_id], function (err, rows, fields) {
         //connection.release();
             if (rows.length !== 0 && !err) {
@@ -4402,3 +4403,5 @@ var server = app.listen(3306, function () {
     console.log("dummy app listening at: " + host + ":" + port);
 
 });
+
+module.exports = app;
