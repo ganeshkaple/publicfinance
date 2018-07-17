@@ -1645,7 +1645,6 @@ connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, 
 //}
 
 
-
 /*connection.query('SELECT  transactionmodels FROM   WHERE loan_id  = ?', [loan_id], function (err, rows, fields) {
         //connection.release();
             if (rows.length !== 0 && !err) {
@@ -3446,7 +3445,6 @@ app.get('/api/table2/:loan_id', function (req, res) {
 });
 
 
-
 //loan details
 
 app.get('/api/tables/:loan_id', function (req, res) {
@@ -4086,7 +4084,6 @@ app.get('/mobile/registeruser', function (req, res) {
 //hero user
 
 
-
 //LOAN ID Password
 app.get('/mobile/loanuser', function (req, res) {
 
@@ -4097,7 +4094,6 @@ app.get('/mobile/loanuser', function (req, res) {
 
 
 });
-
 
 
 app.get('/mobile/newuser', function (req, res) {
@@ -4395,7 +4391,7 @@ app.post('/mobile/newexpenses', function (req, res) {
         }
     });
 });
-var server = app.listen(3306, function () {
+var server = app.listen(3307, function () {
 
     var host = 'ec2-54-164-191-128.compute-1.amazonaws.com';
     var port = server.address().port;
