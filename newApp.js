@@ -17,7 +17,9 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 connection.connect(function (err) {
-    if (err) throw err;
+    if (err) {
+        throw err;
+    }
 
     console.log('You are now connected with mysql database...')
 });
@@ -1042,12 +1044,12 @@ app.post('/api/newregister', function (req, res) {
         //pool.getConnection(function (err, connection) {
         connection.query("INSERT INTO hero SET fullname = ?,  mobile = ?,  idproof = ?, idproofno = ?, address = ?", [fullname, mobile, idproof, idproofno, address], function (err, rows, fields) {
             if (!!err) {
-                data["newuser"] = "Error Adding data";
+                data.newuser = "Error Adding data";
                 console.log(err);
                 //log.error(err);
             } else {
-                data["error"] = 0;
-                data["newuser"] = "new user Added Successfully";
+                data.error = 0;
+                data.newuser = "new user Added Successfully";
                 console.log("Added: " + [fullname, mobile, idproof, idproofno, address]);
                 //log.info("Added: " + [name, description, price]);
             }
@@ -1057,7 +1059,7 @@ app.post('/api/newregister', function (req, res) {
         });
 
     } else {
-        data["newuser"] = "Please provide all required data (i.e : fullname, mobile, idproof, idproofno, address)";
+        data.newuser = "Please provide all required data (i.e : fullname, mobile, idproof, idproofno, address)";
         res.json(data);
     }
 });
@@ -1071,16 +1073,16 @@ app.get('/api/registeruser', function (req, res) {
     connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1097,16 +1099,16 @@ app.get('/api/registerusers', function (req, res) {
     connection.query('SELECT  * FROM hero ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1123,16 +1125,16 @@ app.get('/api/loanuser', function (req, res) {
     connection.query('SELECT  * FROM loan ORDER BY cid DESC LIMIT 1;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1154,16 +1156,16 @@ app.get('/api/installid/:loan_id', function (req, res) {
     connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1184,16 +1186,16 @@ app.get('/api/installide/', function (req, res) {
     connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  ', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1217,16 +1219,16 @@ app.get('/api/installements/:installement_id', function (req, res) {
     connection.query('SELECT installement_id, mydate, installement_amount, loan_id FROM  installements WHERE installement_id  = ?', [installement_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1248,16 +1250,16 @@ app.get('/api/installementtable/', function (req, res) {
     connection.query('SELECT * FROM  installements', function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1278,16 +1280,16 @@ app.get('/api/transactionmodels/', function (req, res) {
     connection.query('SELECT * FROM  transactionmodels ORDER BY  transaction_id DESC LIMIT 5;', function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1308,16 +1310,16 @@ app.post('/api/transaction/', function (req, res) {
     connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1338,16 +1340,16 @@ app.post('/api/loansum/', function (req, res) {
     connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loan INNER JOIN transactionmodels ON loan.loan_id = transactionmodels.loan_id  SET loan.receivedamt =( SELECT sum(installement_amount) FROM transactionmodels) WHERE transactionmodels.loan_id = ?', [loan_id, loan_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1383,16 +1385,16 @@ app.post('/api/updatenew', function (req, res) {
                         connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
-                                data["error"] = 0;
-                                data["report"] = rows;
+                                data.error = 0;
+                                data.report = rows;
                                 res.json(data);
                             } else if (rows.length === 0) {
                                 //Error code 2 = no rows in db.
-                                data["error"] = 2;
-                                data["report"] = 'No products Found..';
+                                data.error = 2;
+                                data.report = 'No products Found..';
                                 res.json(data);
                             } else {
-                                data["report"] = 'error while performing query';
+                                data.report = 'error while performing query';
                                 res.json(data);
                                 console.log('Error while performing Query: ' + err);
                                 //log.error('Error while performing Query: ' + err);
@@ -1400,11 +1402,11 @@ app.post('/api/updatenew', function (req, res) {
                         });
                     } else if (rows.length === 0) {
                         //Error code 2 = no rows in db.
-                        data["error"] = 2;
-                        data["report"] = 'No products Found..';
+                        data.error = 2;
+                        data.report = 'No products Found..';
                         res.json(data);
                     } else {
-                        data["report"] = 'error while performing query';
+                        data.report = 'error while performing query';
                         res.json(data);
                         console.log('Error while performing Query: ' + err);
                         //log.error('Error while performing Query: ' + err);
@@ -1417,16 +1419,16 @@ app.post('/api/updatenew', function (req, res) {
                         connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
-                                data["error"] = 0;
-                                data["report"] = rows;
+                                data.error = 0;
+                                data.report = rows;
                                 res.json(data);
                             } else if (rows.length === 0) {
                                 //Error code 2 = no rows in db.
-                                data["error"] = 2;
-                                data["report"] = 'No products Found..';
+                                data.error = 2;
+                                data.report = 'No products Found..';
                                 res.json(data);
                             } else {
-                                data["report"] = 'error while performing query';
+                                data.report = 'error while performing query';
                                 res.json(data);
                                 console.log('Error while performing Query: ' + err);
                                 //log.error('Error while performing Query: ' + err);
@@ -1434,11 +1436,11 @@ app.post('/api/updatenew', function (req, res) {
                         });
                     } else if (rows.length === 0) {
                         //Error code 2 = no rows in db.
-                        data["error"] = 2;
-                        data["report"] = 'No products Found..';
+                        data.error = 2;
+                        data.report = 'No products Found..';
                         res.json(data);
                     } else {
-                        data["report"] = 'error while performing query';
+                        data.report = 'error while performing query';
                         res.json(data);
                         console.log('Error while performing Query: ' + err);
                         //log.error('Error while performing Query: ' + err);
@@ -1473,12 +1475,12 @@ app.post('/api/update', function (req, res) {
                 console.log(installement_amount);
                 connection.query("DELETE FROM installements WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
                     if (!!err) {
-                        data["product"] = "Error Updating data";
+                        data.product = "Error Updating data";
                         console.log(err);
                         //log.error(err);
                     } else {
-                        data["error"] = 0;
-                        data["product"] = "deleted Book Successfully";
+                        data.error = 0;
+                        data.product = "deleted Book Successfully";
                         console.log("Updated: " + [installement_id]);
                         //log.info("Updated: " + [id, mydate, description, price]);
                     }
@@ -1491,16 +1493,16 @@ app.post('/api/update', function (req, res) {
                         connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (err, rows, fields) {
                             //connection.release();
                             if (rows.length !== 0 && !err) {
-                                data["error"] = 0;
-                                data["product"] = rows;
+                                data.error = 0;
+                                data.product = rows;
                                 res.json(data);
                             } else if (rows.length === 0) {
                                 //Error code 2 = no rows in db.
-                                data["error"] = 2;
-                                data["product"] = 'No products Found..';
+                                data.error = 2;
+                                data.product = 'No products Found..';
                                 res.json(data);
                             } else {
-                                data["product"] = 'error while performing query';
+                                data.product = 'error while performing query';
                                 res.json(data);
                                 console.log('Error while performing Query: ' + err);
                                 //log.error('Error while performing Query: ' + err);
@@ -1508,11 +1510,11 @@ app.post('/api/update', function (req, res) {
                         });
                     } else if (rows.length === 0) {
                         //Error code 2 = no rows in db.
-                        data["error"] = 2;
-                        data["product"] = 'No products Found..';
+                        data.error = 2;
+                        data.product = 'No products Found..';
                         res.json(data);
                     } else {
-                        data["product"] = 'error while performing query';
+                        data.product = 'error while performing query';
                         res.json(data);
                         console.log('Error while performing Query: ' + err);
                         //log.error('Error while performing Query: ' + err);
@@ -1543,16 +1545,16 @@ app.post('/api/updatemy', function (req, res) {
             connection.query('SELECT * FROM installements ORDER BY installement_id DESC ', function (err, rows, fields) {
                 //connection.release();
                 if (rows.length !== 0 && !err) {
-                    data["error"] = 0;
-                    data["product"] = rows;
+                    data.error = 0;
+                    data.product = rows;
                     res.json(data);
                 } else if (rows.length === 0) {
                     //Error code 2 = no rows in db.
-                    data["error"] = 2;
-                    data["product"] = 'No products Found..';
+                    data.error = 2;
+                    data.product = 'No products Found..';
                     res.json(data);
                 } else {
-                    data["product"] = 'error while performing query';
+                    data.product = 'error while performing query';
                     res.json(data);
                     console.log('Error while performing Query: ' + err);
                     //log.error('Error while performing Query: ' + err);
@@ -1684,11 +1686,11 @@ app.post('/api/delete/:installement_id', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else {
-            data["product"] = 'No product Found..';
+            data.product = 'No product Found..';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1711,16 +1713,16 @@ app.get('/api/installementsloan/:installement_id', function (req, res) {
     connection.query('SELECT   mydate, installement_id,  loan.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE installements.installement_id  = ?', [installement_id], function (err, rows, fields) {
         //connection.release();
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["product"] = rows;
+            data.error = 0;
+            data.product = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["product"] = 'No products Found..';
+            data.error = 2;
+            data.product = 'No products Found..';
             res.json(data);
         } else {
-            data["product"] = 'error while performing query';
+            data.product = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -1908,12 +1910,12 @@ app.post('/api/loanusers/', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query("INSERT INTO loan SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?, interest = ?, cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, cid], function (err, rows, fields) {
         if (!!err) {
-            data["newuser"] = "Error Adding data";
+            data.newuser = "Error Adding data";
             console.log(err);
             //log.error(err);
         } else {
-            data["error"] = 0;
-            data["newuser"] = "new user Added Successfully";
+            data.error = 0;
+            data.newuser = "new user Added Successfully";
             console.log("Added: " + [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, interest, cid, loan_id]);
             //log.info("Added: " + [name, description, price]);
         }
@@ -1951,12 +1953,12 @@ app.post('/api/loanuserss/', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query("INSERT INTO loan SET loan_id = ?, loan_amount = ?, startdate = ?, enddate = ?,  installementtype = ?, noofinstallement = ?,dayDifference = ?,  cid = ?;", [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, cid], function (err, rows, fields) {
         if (!!err) {
-            data["newuser"] = "Error Adding data";
+            data.newuser = "Error Adding data";
             console.log(err);
             //log.error(err);
         } else {
-            data["error"] = 0;
-            data["newuser"] = "new user Added Successfully";
+            data.error = 0;
+            data.newuser = "new user Added Successfully";
             console.log("Added: " + [loan_id, loan_amount, startdate, enddate, installementtype, noofinstallement, dayDifference, cid, loan_id]);
             //log.info("Added: " + [name, description, price]);
         }
@@ -2070,7 +2072,7 @@ app.post('/api/insertmydate', function (req, res) {
     //message='';
     console.log('POST Request :: /insert: ');
     //log.info('POST Request :: /insert: ');
-    for (var i = 0; i < totalmydate; i++) {
+    for (var i = 0; i < totalmydate; i += 1) {
 
         var insertuser = mydate[i];
 
@@ -3039,16 +3041,16 @@ app.get('/notification', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3063,16 +3065,16 @@ app.get('/updatenote', function (req, res) {
     connection.query('UPDATE hero SET comment_status = 1 WHERE comment_status = 0', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3083,7 +3085,9 @@ app.post('/sort', function (req, res) {
     var fdate = req.body.fdate;
     var tdate = req.body.tdate;
     connection.query('SELECT * FROM loan WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (error, results) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3098,17 +3102,17 @@ app.post('/datesort', function (req, res) {
     };
     connection.query('SELECT * FROM loan WHERE  startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3126,17 +3130,17 @@ app.post('/lent', function (req, res) {
     };
     connection.query('SELECT loan_amount, loan.loan_id, hero.cid,  noofinstallement, receivedamt, fullname, loan.startdate,  mobile FROM hero JOIN  loan ON hero.cid = loan.cid  WHERE  loan.startdate   BETWEEN ? AND ? ', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3152,16 +3156,16 @@ app.post('/earned', function (req, res) {
     };
     connection.query('SELECT loan_id  FROM loan WHERE  startdate   BETWEEN ? AND ? AND installement_amount IS NOT NULL', [fdate, tdate], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3179,16 +3183,16 @@ app.post('/receive', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3204,16 +3208,16 @@ app.get('/all', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3236,17 +3240,17 @@ app.post('/api/report', function (req, res) {
         //connection.query('SELECT * FROM report WHERE fdate = ? AND tdate = ?',[fdate,tdate], function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3264,16 +3268,16 @@ app.get('/newuser', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3288,16 +3292,16 @@ app.get('/api/books/', function (req, res) {
     connection.query('SELECT * FROM hero;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3314,16 +3318,16 @@ app.get('/api/books3/', function (req, res) {
     connection.query('SELECT  loan_amount, loan.loan_id, hero.cid,  noofinstallement, receivedamt, fullname,  mobile FROM hero JOIN  loan ON hero.cid = loan.cid ', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3338,16 +3342,16 @@ app.get('/api/books2/', function (req, res) {
     connection.query('SELECT * FROM loan;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3362,16 +3366,16 @@ app.get('/api/books1/', function (req, res) {
     connection.query('SELECT  sum(receivedamt) as RAmount,sum(loan_amount) as LAmount FROM loan;', function (err, rows, fields) {
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3392,18 +3396,18 @@ app.get('/api/table1/:cid', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE hero.cid  = ?', [cid], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
             //res.redirect('/posts');
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3425,18 +3429,18 @@ app.get('/api/table2/:loan_id', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
             //res.redirect('/posts');
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3460,18 +3464,18 @@ app.get('/api/tables/:loan_id', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query('SELECT   installements.mydate, installements.installement_id, loan.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
             //res.redirect('/posts');
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3490,18 +3494,18 @@ app.get('/api/expendituressum', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query('SELECT sum(Room_Rent) as Room_Rent ,sum(Light_Bill) as Light_Bill,sum(Mobile_Bill) as Mobile_Bill , sum(Payment) as Payment,sum(Petrol) as Petrol,sum(Others) as Others from expenditure ', function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["sum"] = rows;
+            data.error = 0;
+            data.sum = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["sum"] = 'No products Found..';
+            data.error = 2;
+            data.sum = 'No products Found..';
             res.json(data);
             res.redirect('/posts');
         } else {
-            data["sum"] = 'error while performing query';
+            data.sum = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3520,18 +3524,18 @@ app.get('/api/loanlisttable', function (req, res) {
     //pool.getConnection(function (err, connection) {
     connection.query('SELECT * from loan', function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["report"] = rows;
+            data.error = 0;
+            data.report = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["report"] = 'No products Found..';
+            data.error = 2;
+            data.report = 'No products Found..';
             res.json(data);
             //res.redirect('/posts');
         } else {
-            data["report"] = 'error while performing query';
+            data.report = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3555,12 +3559,12 @@ app.post('/api/expend', function (req, res) {
         //pool.getConnection(function (err, connection) {
         connection.query("INSERT INTO expenditure SET money = ?, expenses = ?,  date = ?", [Payment, expenses, date], function (err, rows, fields) {
             if (!!err) {
-                data["expenditure"] = "Error Adding data";
+                data.expenditure = "Error Adding data";
                 console.log(err);
                 //log.error(err);
             } else {
-                data["error"] = 0;
-                data["expenditure"] = "new user Added Successfully";
+                data.error = 0;
+                data.expenditure = "new user Added Successfully";
                 console.log("Added: " + [Payment, expenses, date]);
                 //log.info("Added: " + [name, description, price]);
             }
@@ -3570,7 +3574,7 @@ app.post('/api/expend', function (req, res) {
         });
 
     } else {
-        data["expenditure"] = "Please provide all required data (i.e : Payment,  expenses, date)";
+        data.expenditure = "Please provide all required data (i.e : Payment,  expenses, date)";
         res.json(data);
     }
 });
@@ -3582,18 +3586,18 @@ app.get('/api/roomrent', function (req, res) {
     };
     connection.query("SELECT sum(money) as Room_Rents FROM expenditure WHERE expenses ='Room_Rent' ;SELECT money,date FROM expenditure WHERE expenses ='Room_Rent'", function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["Room_Rent"] = rows;
+            data.error = 0;
+            data.Room_Rent = rows;
             res.json(data);
             //console.log(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["Room_Rent"] = 'No products Found..';
+            data.error = 2;
+            data.Room_Rent = 'No products Found..';
             res.json(data);
 
         } else {
-            data["Room_Rent"] = 'error while performing query';
+            data.Room_Rent = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3611,16 +3615,16 @@ app.get('/api/light_bill', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["light_bill"] = rows;
+            data.error = 0;
+            data.light_bill = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["light_bill"] = 'No products Found..';
+            data.error = 2;
+            data.light_bill = 'No products Found..';
             res.json(data);
         } else {
-            data["light_bill"] = 'error while performing query';
+            data.light_bill = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3639,16 +3643,16 @@ app.get('/api/mobile_bill', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["mobile_bill"] = rows;
+            data.error = 0;
+            data.mobile_bill = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["mobile_bill"] = 'No products Found..';
+            data.error = 2;
+            data.mobile_bill = 'No products Found..';
             res.json(data);
         } else {
-            data["mobile_bill"] = 'error while performing query';
+            data.mobile_bill = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3667,16 +3671,16 @@ app.get('/api/payment', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["payment"] = rows;
+            data.error = 0;
+            data.payment = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["payment"] = 'No products Found..';
+            data.error = 2;
+            data.payment = 'No products Found..';
             res.json(data);
         } else {
-            data["payment"] = 'error while performing query';
+            data.payment = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3695,16 +3699,16 @@ app.get('/api/petrol', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["Petrol"] = rows;
+            data.error = 0;
+            data.Petrol = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["Petrol"] = 'No products Found..';
+            data.error = 2;
+            data.Petrol = 'No products Found..';
             res.json(data);
         } else {
-            data["Petrol"] = 'error while performing query';
+            data.Petrol = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3723,16 +3727,16 @@ app.get('/api/others', function (req, res) {
         //connection.release();
 
         if (rows.length !== 0 && !err) {
-            data["error"] = 0;
-            data["Others"] = rows;
+            data.error = 0;
+            data.Others = rows;
             res.json(data);
         } else if (rows.length === 0) {
             //Error code 2 = no rows in db.
-            data["error"] = 2;
-            data["Others"] = 'No products Found..';
+            data.error = 2;
+            data.Others = 'No products Found..';
             res.json(data);
         } else {
-            data["Others"] = 'error while performing query';
+            data.Others = 'error while performing query';
             res.json(data);
             console.log('Error while performing Query: ' + err);
             //log.error('Error while performing Query: ' + err);
@@ -3749,7 +3753,9 @@ app.get('/api/others', function (req, res) {
 //last insert newuserid:
 app.get('/mobile/lastinsertnewuser', function (req, res) {
     connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3827,7 +3833,9 @@ app.post('/mobile/newmultiuser/', function (req, res) {
 app.get('/mobile/loanloanact/:cid', function (req, res) {
     var cid = req.params.cid;
     connection.query('SELECT  * from loan WHERE cid = ?;', [cid], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3837,7 +3845,9 @@ app.get('/mobile/loanloanact/:cid', function (req, res) {
 //last insert newuserid:
 app.get('/mobile/loanlist', function (req, res) {
     connection.query('SELECT  * from loan', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3849,14 +3859,18 @@ app.get('/mobile/loanlist', function (req, res) {
 }); */
 app.get('/mobile/installmentlist', function (req, res) {
     connection.query('SELECT  * from installements', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
 app.post('/mobile/lastinsertnewuserloan_id', function (req, res) {
     var loan_id = req.body.loan_id;
     connection.query('SELECT  * from loan WHERE loan_id = ?', [loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3871,7 +3885,7 @@ app.post('/mobile/insertmydate', function (req, res) {
     //message='';
     console.log('POST Request :: /insert: ');
     //log.info('POST Request :: /insert: ');
-    for (var i = 0; i < totalmydate; i++) {
+    for (var i = 0; i < totalmydate; i += 1) {
 
         var insertuser = mydate[i];
 
@@ -3900,7 +3914,9 @@ app.get('/mobile/table1/:cid', function (req, res) {
     console.log("GET request :: /list/" + cid);
 
     connection.query('SELECT hero.cid, loan.loan_id, loan_amount, address, noofinstallement, interest, dayDifference, startdate, receivedamt, fullname, mobile FROM hero JOIN  loan ON hero.cid = loan.cid WHERE hero.cid  = ?', [cid], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3910,7 +3926,9 @@ app.get('/mobile/installid/:loan_id', function (req, res) {
 
 
     connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3918,7 +3936,9 @@ app.get('/mobile/installid/:loan_id', function (req, res) {
 app.get('/mobile/tables/:loan_id', function (req, res) {
     var loan_id = req.params.loan_id;
     connection.query('SELECT   installements.mydate, installements.installement_id, loan.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?', [loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3926,7 +3946,9 @@ app.get('/mobile/tables/:loan_id', function (req, res) {
 app.post('/mobile/delete/:installement_id', function (req, res) {
     var installement_id = req.params.installement_id;
     connection.query('DELETE FROM installements WHERE  installement_id = ?', [installement_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3934,7 +3956,9 @@ app.post('/mobile/delete/:installement_id', function (req, res) {
 app.get('/mobile/installementsloan/:installement_id', function (req, res) {
     var loan_id = req.params.loan_id;
     connection.query('SELECT   mydate, installement_id,  loan.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE installements.installement_id  = ?', [installement_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -3956,7 +3980,9 @@ app.post('/mobile/update', function (req, res) {
                 console.log('error1');
                 console.log(installement_amount);
                 connection.query("DELETE FROM installements WHERE installement_id = ? ", [installement_id], function (err, rows, fields) {
-                    if (error) throw error;
+                    if (error) {
+                        throw error;
+                    }
                     res.end(JSON.stringify(results));
                 });
             }
@@ -3965,7 +3991,9 @@ app.post('/mobile/update', function (req, res) {
                     if (rows.length !== 0 && !err) {
                         connection.query('SELECT   installements.mydate, installements.installement_id, installements.loan_id, installements.installement_amount  FROM loan JOIN installements  ON   loan.loan_id = installements.loan_id  WHERE loan.loan_id  = ?; ', [loan_id], function (error, results, fields) {
                             //connection.release();
-                            if (error) throw error;
+                            if (error) {
+                                throw error;
+                            }
                             res.end(JSON.stringify(results));
                         });
                     } else if (rows.length === 0) {
@@ -3991,7 +4019,9 @@ app.post('/mobile/transactiontransaction_id/', function (req, res) {
 
 
     connection.query('SELECT * FROM  transactionmodels  WHERE transaction_id = ? ORDER BY  transaction_id DESC', [transaction_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4000,14 +4030,18 @@ app.post('/mobile/transactionloan_id/', function (req, res) {
 
 
     connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC', [loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
 app.get('/mobile/transaction/', function (req, res) {
 
     connection.query('SELECT * FROM  transactionmodels', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4017,13 +4051,17 @@ app.post('/mobile/loansum/', function (req, res) {
 
 
     connection.query('SELECT * FROM  transactionmodels  WHERE loan_id = ? ORDER BY  transaction_id DESC; UPDATE loan INNER JOIN transactionmodels ON loan.loan_id = transactionmodels.loan_id  SET loan.receivedamt =( SELECT sum(installement_amount) FROM transactionmodels) WHERE transactionmodels.loan_id = ?', [loan_id, loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
 app.get('/mobile/transactionmodels/', function (req, res) {
     connection.query('SELECT * FROM  transactionmodels ORDER BY  transaction_id DESC LIMIT 5;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4041,7 +4079,9 @@ app.post('/mobile/updatemy', function (req, res) {
     connection.query("UPDATE installements SET mydate = ?, installement_amount = ?, loan_id = ? WHERE installement_id = ?; INSERT INTO  transactionmodels SET mydate =?, installement_amount = ?, loan_id =?; ", [mydate, installement_amount, loan_id, installement_id, mydate, installement_amount, loan_id], function (err, rows, fields) {
         if (rows.length !== 0 && !err) {
             connection.query('SELECT * FROM installements ORDER BY installement_id DESC ', function (error, results, fields) {
-                if (error) throw error;
+                if (error) {
+                    throw error;
+                }
                 res.end(JSON.stringify(results));
             });
 
@@ -4057,7 +4097,9 @@ app.post('/mobile/updatemy', function (req, res) {
 app.get('/mobile/installementsloan_id/:loan_id', function (req, res) {
     var loan_id = req.params.loan_id;
     connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installements   WHERE loan_id = ?', [loan_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4067,7 +4109,9 @@ app.get('/mobile/installementsloan/:installement_id', function (req, res) {
 
 
     connection.query('SELECT   mydate, installement_id,  installement_amount  FROM installements WHERE installement_id  = ?', [installement_id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4075,7 +4119,9 @@ app.get('/mobile/installementsloan/:installement_id', function (req, res) {
 app.get('/mobile/registeruser', function (req, res) {
 
     connection.query('SELECT  * from hero WHERE cid = LAST_INSERT_ID();', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4088,7 +4134,9 @@ app.get('/mobile/registeruser', function (req, res) {
 app.get('/mobile/loanuser', function (req, res) {
 
     connection.query('SELECT  * FROM loan ORDER BY cid DESC LIMIT 1;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4099,7 +4147,9 @@ app.get('/mobile/loanuser', function (req, res) {
 app.get('/mobile/newuser', function (req, res) {
 
     connection.query('SELECT * FROM installements ORDER BY installement_id DESC;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4111,7 +4161,9 @@ app.get('/mobile/notification', function (req, res) {
         "report": ""
     };
     connection.query('SELECT count(comment_status) as cid FROM hero where comment_status = 0;SELECT * FROM hero ORDER BY cid DESC LIMIT 5;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4123,7 +4175,9 @@ app.get('/mobile/updatenote', function (req, res) {
         "report": ""
     };
     connection.query('UPDATE hero SET comment_status = 1 WHERE comment_status = 0', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4133,7 +4187,9 @@ app.get('/mobile/expendituressum', function (req, res) {
 
 
     connection.query('SELECT sum(Room_Rent) as Room_Rent ,sum(Light_Bill) as Light_Bill,sum(Mobile_Bill) as Mobile_Bill , sum(Payment) as Payment,sum(Petrol) as Petrol,sum(Others) as Others from expenditure ', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4142,7 +4198,9 @@ app.get('/mobile/getexpenditure', function (req, res) {
 
 
     connection.query('SELECT * from expenditure ', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4150,7 +4208,9 @@ app.post('/mobile/getexpenditureid', function (req, res) {
     var id = req.param.id;
 
     connection.query('SELECT * from expenditure  where id = ?', [id], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 });
@@ -4265,7 +4325,9 @@ app.post('/mobile/installementdelete', function (req, res) {
 app.get('/mobile/roomrent', function (req, res) {
 
     connection.query('SELECT sum(Room_Rent) as Room_Rents FROM expenditure;SELECT Room_Rent,date FROM expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4274,7 +4336,9 @@ app.get('/mobile/roomrent', function (req, res) {
 app.get('/mobile/light_bill', function (req, res) {
 
     connection.query('SELECT sum(Light_Bill) as Light_Bills FROM expenditure;SELECT Light_Bill,date from expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4282,7 +4346,9 @@ app.get('/mobile/light_bill', function (req, res) {
 app.get('/mobile/mobile_bill', function (req, res) {
 
     connection.query('SELECT sum(Mobile_Bill) as Mobile_Bills FROM expenditure;SELECT Mobile_Bill,date from expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4291,7 +4357,9 @@ app.get('/mobile/payment', function (req, res) {
     console.log("GET Request :: /payment");
 
     connection.query('SELECT sum(Payment) as Payments FROM expenditure;SELECT Payment,date from expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4300,7 +4368,9 @@ app.get('/mobile/petrol', function (req, res) {
     console.log("GET Request :: /petrol");
 
     connection.query('SELECT sum(Petrol) as Petrols FROM expenditure;SELECT Petrol,date from expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4309,7 +4379,9 @@ app.get('/mobile/others', function (req, res) {
     console.log("GET Request :: /others");
 
     connection.query('SELECT sum(Others) as Otherss FROM expenditure;SELECT Others,date from expenditure', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4345,7 +4417,9 @@ app.post('/mobile/registerusercid', function (req, res) {
     var cid = req.body.cid;
 
     connection.query('SELECT  * from hero WHERE cid = ?', [cid], function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4355,7 +4429,9 @@ app.post('/mobile/registerusercid', function (req, res) {
 app.get('/mobile/registerusers', function (req, res) {
 
     connection.query('SELECT  * FROM hero ORDER BY cid DESC;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
@@ -4364,7 +4440,9 @@ app.get('/mobile/registerusers', function (req, res) {
 app.get('/mobile/registermultiusers', function (req, res) {
 
     connection.query('SELECT  * FROM multiuser ORDER BY userid DESC;', function (error, results, fields) {
-        if (error) throw error;
+        if (error) {
+            throw error;
+        }
         res.end(JSON.stringify(results));
     });
 
