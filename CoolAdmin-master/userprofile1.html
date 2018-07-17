@@ -17,7 +17,12 @@
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
@@ -374,7 +379,7 @@ margin-right:10px;
 		<div id="menu">
          <aside class="menu-sidebar d-none d-lg-block sidebar-icon" style="position: fixed;">
             <div class="logo">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -398,7 +403,7 @@ margin-right:10px;
                         </li>
 						<li class="has-sub">
 						<li>
-                            <a href="expenses.html">
+                            <a href="expenses2.html">
                                 <i class="fas fa-calendar-alt"></i>Expenses</a>
                         </li>
 						</li>
@@ -527,7 +532,10 @@ margin-right:10px;
             <!--heder end here-->
 			<div id="notreadOne" style="display:block;">
 			<ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="main-page1.html">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i>User Registration</li>
+                <li class="breadcrumb-item"><a href="dash.html">Home</a><i
+                        class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i>User
+                    Registration
+                </li>
     
  		       </ol>
 <!--grid-->
@@ -583,25 +591,66 @@ margin-right:10px;
   
 </div>
    	      <div  id="show" style="display:none;" >
-    <div class="card" style="height:250px;">
-     
-    
-       <form>
-	  <input type="text"  ng-model="mydate"  class="form-control">
-	   <input type="text" ng-model="installement_amount" class="form-control">
-	    <input type="text" ng-model="loan_id" class="form-control">
+              <div class="container1">
+                  <div class="modal fade" id="myModal" role="dialog">
+                      <div class="modal-dialog">
 
-	   
-	  
-  <br/>
-                    <button class="btn" type="submit">Save</button>
-					<button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
-                    <button class="btn" type="button" ng-click="remove()">Delete</button>
-              
-	   </form>
-	
+                          <!-- Modal content-->
+                          <div class="modal-content" style="margin-left:340px;margin-top:160px;">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;
+                                  </button>
 
-    </div>
+                              </div>
+                              <div class="modal-body">
+                                  <div class="form-group">
+                                      <div class="input-group">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-rupee" style="font-size:18px;"></i>
+                                          </div>
+                                          <input type="text" ng-model="mydate" class="form-control">
+                                          <input type="text" ng-model="installement_amount"
+                                                 class="form-control">
+                                          <input type="text" ng-model="loan_id"
+                                                 class="form-control">
+                                      </div>
+                                  </div>
+
+
+                              </div>
+                              <div class="modal-footer">
+                                  <button class="btn btn-primary" type="submit">Save</button>
+                                  <button class="btn btn-success" type="submit"
+                                          ng-click="updateProduct()" onclick="update()">Update
+                                  </button>
+                                  <button class="btn btn-danger" type="button"
+                                          ng-click="remove(z.installement_id)">Delete
+                                  </button>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+              <!--  <div class="card" style="height:250px;">
+
+
+                  <form>
+                 <input type="text"  ng-model="mydate"  class="form-control">
+                  <input type="text" ng-model="installement_amount" class="form-control">
+                   <input type="text" ng-model="loan_id" class="form-control">
+
+
+
+             <br/>
+                               <button class="btn" type="submit">Save</button>
+                               <button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
+                               <button class="btn" type="button" ng-click="remove()">Delete</button>
+
+                  </form>
+
+
+               </div> -->
   </div> 
 <div id="update" style="display:none;"></div>                    
 <div id="rec" style="display:none;">

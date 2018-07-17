@@ -11,12 +11,20 @@
 
     <!-- Title Page-->
     <title>Charts</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
@@ -142,7 +150,7 @@ border : 10px;
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="dash.html">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -257,7 +265,7 @@ border : 10px;
         <!-- MENU SIDEBAR-->
          <aside class="menu-sidebar d-none d-lg-block sidebar-icon" id="menu">
             <div class="logo" class="sidebar-icon">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -408,11 +416,20 @@ border : 10px;
             <div class="main-content">
             <!--heder end here-->
 <div id="p1" style="display:block">
-<ol class="breadcrumb" style="background-color:#F5F5F5;margin-left:30px;margin-right:30px;">
-                <li class="breadcrumb-item"><a href="main-page1.html">Home</a><i class="fa fa-angle-right"></i>Customer List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="expenses1.html"><button class="btn  btn-primary" style="width:160px;">Add Expenses</button></a></li>
+
+
+    <ol class="breadcrumb" style="background-color:#F5F5F5;margin-left:30px;margin-right:30px;">
+        <li class="breadcrumb-item"><a href="dash.html">Home</a><i class="fa fa-angle-right"></i>Customer
+            List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+                    type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                    data-target="#myModal">Add Expenses
+            </button>
+        </li>
             </ol>
 <!--grid-->
- 	<div class="inbox-mail card10">
+
+
+    <div class="inbox-mail card10">
 	<div class="row">
 	<div class="col-md-6 compose w3layouts">
 		
@@ -488,6 +505,49 @@ for (var i = 0; i < btns.length; i++) {
 </div>
 <!-- tab content -->
 <div class="col-md-6 tab-content tab-content-in w3">
+    <div class="container1">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="margin-left:340px;margin-top:160px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-rupee" style="font-size:18px;"></i>
+                                </div>
+                                <input type="text" ng-model="Payment" placeholder="expenses"
+                                       class="form-control">
+                                <select>
+                                    <option value="RoomRent">RoomRent</option>
+                                    <option value="LightBill">Light Bill</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="PaidSalaries">Paid Salaries</option>
+                                    <option value="Fuel">Fuel</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="" class="btn btn-success">submit</button>
+                        <button type="button" class="btn btn-dialog btn btn-danger"
+                                data-dismiss="modal">Cancel
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 <div class="tab-pane text-style active inbox-right scroll" id="tab1" >
    <div id="roomrent" style="display:block;">
     <div class="inbox-right scroll" style="border : 1px   solid; overflow: auto; height: 600px;">
@@ -1253,8 +1313,8 @@ $http.get('/notification', {
                            .then(function (response) {
               
 					$scope.Room_Rent = response.data.Room_Rent;
-				
-            })
+
+                           });
   
 
         
@@ -1262,8 +1322,8 @@ $http.get('/notification', {
             .then(function (response) {
               
 					$scope.mobile_bill = response.data.mobile_bill;
-				
-            })
+
+            });
             
   
 	
@@ -1271,16 +1331,16 @@ $http.get('/notification', {
             .then(function (response) {
               
 					$scope.light_bill = response.data.light_bill;
-				
-            })
+
+            });
    
 	
         $http.get('/api/payment')
             .then(function (response) {
               
 					$scope.payment = response.data.payment;
-				
-            })
+
+            });
             
    
         
@@ -1288,8 +1348,8 @@ $http.get('/notification', {
             .then(function (response) {
               
 					$scope.Petrol = response.data.Petrol;
-				
-            })
+
+            });
     
 
         
@@ -1299,8 +1359,8 @@ $http.get('/notification', {
             .then(function (response) {
               
 					$scope.Others = response.data.Others;
-				
-            })
+
+            });
             
    
 	

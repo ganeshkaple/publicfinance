@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Charts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Fontfaces CSS-->
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet"
+          media="all">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
+          media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
+    <script src="https://rawgithub.com/rendro/easy-pie-chart/master/dist/angular.easypiechart.js"></script>
+    <link rel="stylesheet"
+          href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.common-material.min.css"/>
+    <link rel="stylesheet"
+          href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.min.css"/>
+    <link rel="stylesheet"
+          href="https://kendo.cdn.telerik.com/2018.1.221/styles/kendo.material.mobile.min.css"/>
+
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.1.221/js/kendo.all.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!-- //jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400'
+          rel='stylesheet' type='text/css'/>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet'
+          type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="css/icon-font.min.css" type='text/css'/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- //lined-icons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .chart {
+            position: relative;
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            margin-top: 50px;
+            margin-left: 180px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .chart canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .percent {
+            display: inline-block;
+            line-height: 110px;
+            z-index: 2;
+        }
+
+        .percent:after {
+            content: '%';
+            margin-left: 0.1em;
+            font-size: .8em;
+        }
+
+        .angular {
+            margin-top: 100px;
+        }
+
+        .angular .chart {
+            margin-top: 0;
+        }
+
+        .card10 {
+            box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+    </style>
+
+    <style>
+        .card {
+            border: 10px #1B93E1 solid;
+        }
+
+        .card1 {
+            border: 10px;
+        }
+    </style>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin-right: 8px;
+
+            margin-top: 15px;
+
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the buttons */
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+
+    </style>
+</head>
+
+<body class="animsition">
+<div ng-app="app">
+    <div ng-controller="chartCtrl">
+        <div class="page-wrapper">
+            <!-- HEADER MOBILE-->
+            <header class="header-mobile d-block d-lg-none">
+                <div class="header-mobile__bar">
+                    <div class="container-fluid">
+                        <div class="header-mobile-inner">
+                            <a class="logo" href="dash.html">
+                                <img src="images/icon/logo.png" alt="CoolAdmin"/>
+                            </a>
+                            <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar-mobile">
+                    <div class="container-fluid">
+                        <ul class="navbar-mobile__list list-unstyled">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="index.html">Dashboard 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="index2.html">Dashboard 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="index3.html">Dashboard 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="index4.html">Dashboard 4</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="chart.html">
+                                    <i class="fas fa-chart-bar"></i>Charts</a>
+                            </li>
+                            <li>
+                                <a href="table.html">
+                                    <i class="fas fa-table"></i>Tables</a>
+                            </li>
+                            <li>
+                                <a href="form.html">
+                                    <i class="far fa-check-square"></i>Forms</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-calendar-alt"></i>Calendar</a>
+                            </li>
+                            <li>
+                                <a href="map.html">
+                                    <i class="fas fa-map-marker-alt"></i>Maps</a>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-copy"></i>Pages</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="login.html">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="register.html">Register</a>
+                                    </li>
+                                    <li>
+                                        <a href="forget-pass.html">Forget Password</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-desktop"></i>UI Elements</a>
+                                <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                    <li>
+                                        <a href="button.html">Button</a>
+                                    </li>
+                                    <li>
+                                        <a href="badge.html">Badges</a>
+                                    </li>
+                                    <li>
+                                        <a href="tab.html">Tabs</a>
+                                    </li>
+                                    <li>
+                                        <a href="card.html">Cards</a>
+                                    </li>
+                                    <li>
+                                        <a href="alert.html">Alerts</a>
+                                    </li>
+                                    <li>
+                                        <a href="progress-bar.html">Progress Bars</a>
+                                    </li>
+                                    <li>
+                                        <a href="modal.html">Modals</a>
+                                    </li>
+                                    <li>
+                                        <a href="switch.html">Switchs</a>
+                                    </li>
+                                    <li>
+                                        <a href="grid.html">Grids</a>
+                                    </li>
+                                    <li>
+                                        <a href="fontawesome.html">Fontawesome Icon</a>
+                                    </li>
+                                    <li>
+                                        <a href="typo.html">Typography</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <!-- END HEADER MOBILE-->
+
+            <!-- MENU SIDEBAR-->
+            <aside class="menu-sidebar d-none d-lg-block sidebar-icon" id="menu">
+                <div class="logo" class="sidebar-icon">
+                    <a href="dash.html">
+                        <img src="images/icon/logo.png" alt="Cool Admin"/>
+                    </a>
+                </div>
+                <div class="menu-sidebar__content js-scrollbar1"
+                     style="position: relative;overflow:auto;">
+                    <nav class="navbar-sidebar" style="position: fixed;">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="has-sub">
+                                <a class="js-arrow" href="dash.html">
+                                    <i class="fas fa-tachometer-alt"></i>Home</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+
+                            <li>
+                                <a href="report.html">
+                                    <i class="fas fa-table"></i>Reports</a>
+                            </li>
+
+                            </li>
+                            <li class="has-sub">
+                            <li>
+                                <a href="expenses.html">
+                                    <i class="fas fa-calendar-alt"></i>Expenses</a>
+                            </li>
+                            </li>
+                            <li class="has-sub">
+                                <a href="customer.html">
+                                    <i class="fas fa-copy"></i>customer</a>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <!-- END MENU SIDEBAR-->
+
+            <!-- PAGE CONTAINER-->
+            <div class="page-container">
+                <!-- HEADER DESKTOP-->
+                <header class="header-desktop">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="header-wrap">
+                                <form class="form-header" action="" method="POST">
+                                    <input class="au-input au-input--xl" type="text" name="search"
+                                           placeholder="Search for datas &amp; reports..."/>
+                                    <button class="au-btn--submit" type="submit">
+                                        <i class="zmdi zmdi-search"></i>
+                                    </button>
+                                </form>
+                                <div class="header-button">
+                                    <div class="noti-wrap">
+
+
+                                        <div class="noti__item js-item-menu">
+                                            <i class="zmdi zmdi-notifications"></i>
+                                            <span class="quantity">3</span>
+                                            <div class="notifi-dropdown js-dropdown">
+                                                <div class="notifi__title">
+                                                    <p>You have 3 Notifications</p>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c1 img-cir img-40">
+                                                        <i class="zmdi zmdi-email-open"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a email notification</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c2 img-cir img-40">
+                                                        <i class="zmdi zmdi-account-box"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>Your account has been blocked</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__item">
+                                                    <div class="bg-c3 img-cir img-40">
+                                                        <i class="zmdi zmdi-file-text"></i>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p>You got a new file</p>
+                                                        <span class="date">April 12, 2018 06:50</span>
+                                                    </div>
+                                                </div>
+                                                <div class="notifi__footer">
+                                                    <a href="#">All notifications</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="account-wrap">
+                                        <div class="account-item clearfix js-item-menu">
+                                            <div class="image">
+                                                <img src="images/icon/avatar-01.jpg"
+                                                     alt="John Doe"/>
+                                            </div>
+                                            <div class="content">
+                                                <a class="js-acc-btn" href="#">john doe</a>
+                                            </div>
+                                            <div class="account-dropdown js-dropdown">
+                                                <div class="info clearfix">
+                                                    <div class="image">
+                                                        <a href="#">
+                                                            <img src="images/icon/avatar-01.jpg"
+                                                                 alt="John Doe"/>
+                                                        </a>
+                                                    </div>
+                                                    <div class="content">
+                                                        <h5 class="name">
+                                                            <a href="#">john doe</a>
+                                                        </h5>
+                                                        <span class="email">johndoe@example.com</span>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__body">
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-account"></i>Account</a>
+                                                    </div>
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                    </div>
+                                                    <div class="account-dropdown__item">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                    </div>
+                                                </div>
+                                                <div class="account-dropdown__footer">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- END HEADER DESKTOP-->
+
+                <!-- MAIN CONTENT-->
+                <div class="main-content">
+                    <!--heder end here-->
+                    <div id="p1" style="display:block">
+
+
+                        <ol class="breadcrumb"
+                            style="background-color:#F5F5F5;margin-left:30px;margin-right:30px;">
+                            <li class="breadcrumb-item"><a href="dash.html">Home</a><i
+                                    class="fa fa-angle-right"></i>Customer List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+                                    type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                    data-target="#myModal">Add Expenses
+                            </button>
+                            </li>
+                        </ol>
+                        <!--grid-->
+
+
+                        <div class="inbox-mail card10">
+                            <div class="row">
+                                <div class="col-md-6 compose w3layouts">
+
+                                    <h2>Balance</h2>
+
+
+                                    <div>
+                                        <div style="margin-left:10px;">
+                                            <div class="row">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c1">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <i class="fa fa-home"></i>
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="r in Room_Rent[0]">
+
+                                                                    <span>Room Rent</span>
+                                                                    <h2 onclick="roomrent()">
+                                                                        {{r.Room_Rents}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c2">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <i class="fa fa-lightbulb-o"></i>
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="l in light_bill[0]">
+
+                                                                    <span>Light Bill</span>
+                                                                    <h2 onclick="lightbill()">
+                                                                        {{l.Light_Bills}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c3">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <i class="fa fa-mobile"></i>
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="m in mobile_bill[0]">
+
+                                                                    <span>Mobile Bill</span>
+                                                                    <h2 onclick="mobile()">
+                                                                        {{m.Mobile_Bills}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c3">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <img src="images/if_misc-_wallet_1276842.png"
+                                                                         style="color:white;width:30px;height:30px;margin-top:2px;">
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="p in payment[0]">
+
+                                                                    <span>Paid Salaries</span>
+                                                                    <h2 onclick="salary()">
+                                                                        {{p.Payments}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c4">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARmSURBVGhD7ZltbBRFGMerqIl80OgnExNf+KCJfuSLH0waub0XZrct3Mxy0japIh60hpZGSmkpLaS8mDQGxGBSsCFFKpEaiTFRWqi0AorV0mARI9gIpWBUTEmFgAE6zrP7zLbX26u320vZM/tP/sntzM78n19nJ7vbzfHly5ev/68URX84oEbnTNfhcOyp3Nzc+3DatNXQ0HCvqhY+gofOBeGKyj5TCL0dVBnPiAkbUVTaOHdu/H6MmVKaps0W53eJsbcUjQawOX0F89jTAuL3pEIyZIWwAyLmHjPNXgARJLRbjgkQWoBd6UusQjsMDucv5kvrd/DK7Z/wyncPTMvlW/fzWGmtBTNVYeZKsC/luQK8HrvSl67rD4hJbsIES2rf4XVtX1uuae3hq5q/SNtVzQf52g+Ojc+x9zjPL4ybMIS2YmSCzJVghyVEUKXrscuZ5qnscTlJ+daPjAJWv3+I60tXiTYdJ0/fsKol1U0GBMxVVL7B7CPsCEZaQohD1njCNmGXcyma/oScqGJbuxGux6utwtx6+cZdxlzFKxvNNkKPYqQh3NidE8dALdjtXJNB4NII5ceM450te3hf/ylHrnjT3Bcvl61NCfICYw+KfdAhc6UzClKz+4g18YnePu5U23fsNMbq8aqUILAPZEbNuo1WXvaBEPoetJVVrOYDP/5k5WUtSGVVnQ+SJB8khRyDnD5j5WUdiEL0NdBGFizmseLXMY/ecPO0bGkySO2eHh7UzDt691fHsbz0taVpmzF2kbippgLJJfpj4i5+Reai38Jud5oMAuH5hcuM4/kFMb4wVpK+F5VYhb265u2UIKCXSPRJATMKfYrG2kXTlE/H/yk7kArx5BpZWGQV5dQFxW/w2tbuBBDxONIfDrNn4cUJo2GvXDD6xKWGTe5lBwKubjnMSzfv5vENzY68oqkt4Qk4WlKeAClW4Ww4jz4P2TMCkinTJSsTQUyfhOysAhnfI9HvAiorlVmhEHs0S0HoUZH1oswycn0QG7kB2fxxL9/U3mvbN9meBVknfO7yCP/50ojx2+6cifYsSGf/BbyHc37w5HnbcybakyC7Ogf4nbExxOD89p0x3twxYHuutOdAYE9cvf4PIoxr5NpN3rj/W9sxYM+BdJ8extKTBZeb3Riw50CG/hzFspP1y29XbceAPQcyfOVvLDtZg9kE0vXDEJadrM/7frUdA/YcyPp9J/jwX8mrcv6PUV7/4Te2Y8CeAwEDTNepIX5RXGawZzrEJm/YlxoC7EkQN54IAu8hMku8l9QphF2H3yFVj2M57jWTILquzwqq9IzMA4s3x2vw2ovluNdMgkBeYH7sGUVlPaLtlgGl0ZBRyHQ10yBSsDr4073mRdhzYkm/F9fpoNxwYJW9wvNir2XUkQWFJojKbph5bFAhdK8oY3r/NQEpGl0ui78bhi/HkUjRQ1iOe8GHFvGXKRMTVpuOtgQIbRs/zpzhW4iY+9OASrdY7Wo0jKX48nX3lZPzL3o1h8H+GMXOAAAAAElFTkSuQmCC"
+                                                                         style="width:59px;height:55px;">
+
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="f in Petrol[0]">
+
+                                                                    <span>Fuel</span>
+                                                                    <h2 onclick="fuel()">
+                                                                        {{f.Petrols}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c1">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                    <i class="fa fa-list"
+                                                                       style="font-size:48px;"></i>
+                                                                </div>
+                                                                <div class="text"
+                                                                     ng-repeat="o in Others[0]">
+
+                                                                    <span>Others</span>
+                                                                    <h2 onclick="roomrent()">
+                                                                        {{o.Otherss}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-sm-4 col-lg-4">
+                                                    <div class="overview-item overview-item--c1">
+                                                        <div class="overview__inner">
+                                                            <div class="overview-box clearfix">
+                                                                <div class="icon">
+                                                                   <i class="fa fa-list" style="font-size:42px;"></i>
+                                                                </div>
+                                                                <div class="text" ng-repeat="o in Others[0]">
+
+                                                                    <span>Others</span>
+                                                                     <h2 onclick="others()">{{o.Otherss}}</h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="overview-chart">
+                                                                <canvas id="widgetChart1"></canvas>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- tab content -->
+                                <div class="col-md-6 tab-content tab-content-in w3">
+                                    <div class="container1">
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content"
+                                                     style="margin-left:340px;margin-top:160px;">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                                data-dismiss="modal">&times;
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-rupee"
+                                                                       style="font-size:18px;"></i>
+                                                                </div>
+                                                                <input type="text"
+                                                                       ng-model="Payment"
+                                                                       placeholder="expenses"
+                                                                       class="form-control">
+                                                                <input type="date" ng-model="date"
+                                                                       placeholder="12/3/2018"
+                                                                       class="form-control">
+                                                                <select ng-model="expenses">
+                                                                    <option value="">Select
+                                                                        Expenses
+                                                                    </option>
+                                                                    <option value="Room_Rent">
+                                                                        RoomRent
+                                                                    </option>
+                                                                    <option value="Light_Bill">Light
+                                                                        Bill
+                                                                    </option>
+                                                                    <option value="Mobile_Bill">
+                                                                        Mobile
+                                                                    </option>
+                                                                    <option value="Payment">Paid
+                                                                        Salaries
+                                                                    </option>
+                                                                    <option value="Petrol">Fuel
+                                                                    </option>
+                                                                    <option value="Others">Others
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" ng-click="expend()"
+                                                                class="btn btn-success">submit
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-dialog btn btn-danger"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane text-style active inbox-right scroll"
+                                         id="tab1">
+                                        <div id="roomrent" style="display:block;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+
+                                                <h4 style="margin-top:30px;margin-left:30px;">
+                                                    RoomRent</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="r in Room_Rent[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;<b>{{r.date
+                                                                | date:'MM/dd/yyyy h:mma'}} </b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{r.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><i
+                                                                    class="fa fa-home"
+                                                                    style="color:blue;font-size:25px; margin-top:-13px; margin-left:2px;"></i><br>Room
+                                                                Rent</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="lightbill" style="display:none;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+                                                <h4>Light Bill</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="l in light_bill[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;<b>
+                                                                {{l.date| date:'MM/dd/yyyy
+                                                                h:mma'}}</b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{l.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><i
+                                                                    class="fa fa-lightbulb-o"
+                                                                    aria-hidden="true"
+                                                                    style="color:#A324B3;font-size:28px; margin-top:-13px; margin-left:2px;"></i><br>Light
+                                                                Bill</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="mobile" style="display:none;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+                                                <h4>Mobile</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="m in mobile_bill[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;<b>{{m.date|
+                                                                date:'MM/dd/yyyy h:mma'}}</b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{m.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><i
+                                                                    class="fa fa-mobile"
+                                                                    style="color:pink;font-size:32px; margin-top:-13px; margin-left:2px;"></i><br>Mobile
+                                                                Bill</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="salary" style="display:none;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+                                                <h4>Paid Salaries</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="p in payment[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i><b>
+                                                                {{p.date| date:'MM/dd/yyyy
+                                                                h:mma'}}</b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{p.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><img
+                                                                    src="images/if_misc-_wallet_1276842.png"
+                                                                    style="width:23px;height:23px;margin-left:2px;margin-top:-13px;"><br>Paid
+                                                                Salaries</h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="fuel" style="display:none;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+                                                <h4>Fuel</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="f in Petrol[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;<b>
+                                                                {{f.date| date:'MM/dd/yyyy
+                                                                h:mma'}}</b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{f.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><img
+                                                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARmSURBVGhD7ZltbBRFGMerqIl80OgnExNf+KCJfuSLH0waub0XZrct3Mxy0japIh60hpZGSmkpLaS8mDQGxGBSsCFFKpEaiTFRWqi0AorV0mARI9gIpWBUTEmFgAE6zrP7zLbX26u320vZM/tP/sntzM78n19nJ7vbzfHly5ev/68URX84oEbnTNfhcOyp3Nzc+3DatNXQ0HCvqhY+gofOBeGKyj5TCL0dVBnPiAkbUVTaOHdu/H6MmVKaps0W53eJsbcUjQawOX0F89jTAuL3pEIyZIWwAyLmHjPNXgARJLRbjgkQWoBd6UusQjsMDucv5kvrd/DK7Z/wyncPTMvlW/fzWGmtBTNVYeZKsC/luQK8HrvSl67rD4hJbsIES2rf4XVtX1uuae3hq5q/SNtVzQf52g+Ojc+x9zjPL4ybMIS2YmSCzJVghyVEUKXrscuZ5qnscTlJ+daPjAJWv3+I60tXiTYdJ0/fsKol1U0GBMxVVL7B7CPsCEZaQohD1njCNmGXcyma/oScqGJbuxGux6utwtx6+cZdxlzFKxvNNkKPYqQh3NidE8dALdjtXJNB4NII5ceM450te3hf/ylHrnjT3Bcvl61NCfICYw+KfdAhc6UzClKz+4g18YnePu5U23fsNMbq8aqUILAPZEbNuo1WXvaBEPoetJVVrOYDP/5k5WUtSGVVnQ+SJB8khRyDnD5j5WUdiEL0NdBGFizmseLXMY/ecPO0bGkySO2eHh7UzDt691fHsbz0taVpmzF2kbippgLJJfpj4i5+Reai38Jud5oMAuH5hcuM4/kFMb4wVpK+F5VYhb265u2UIKCXSPRJATMKfYrG2kXTlE/H/yk7kArx5BpZWGQV5dQFxW/w2tbuBBDxONIfDrNn4cUJo2GvXDD6xKWGTe5lBwKubjnMSzfv5vENzY68oqkt4Qk4WlKeAClW4Ww4jz4P2TMCkinTJSsTQUyfhOysAhnfI9HvAiorlVmhEHs0S0HoUZH1oswycn0QG7kB2fxxL9/U3mvbN9meBVknfO7yCP/50ojx2+6cifYsSGf/BbyHc37w5HnbcybakyC7Ogf4nbExxOD89p0x3twxYHuutOdAYE9cvf4PIoxr5NpN3rj/W9sxYM+BdJ8extKTBZeb3Riw50CG/hzFspP1y29XbceAPQcyfOVvLDtZg9kE0vXDEJadrM/7frUdA/YcyPp9J/jwX8mrcv6PUV7/4Te2Y8CeAwEDTNepIX5RXGawZzrEJm/YlxoC7EkQN54IAu8hMku8l9QphF2H3yFVj2M57jWTILquzwqq9IzMA4s3x2vw2ovluNdMgkBeYH7sGUVlPaLtlgGl0ZBRyHQ10yBSsDr4073mRdhzYkm/F9fpoNxwYJW9wvNir2XUkQWFJojKbph5bFAhdK8oY3r/NQEpGl0ui78bhi/HkUjRQ1iOe8GHFvGXKRMTVpuOtgQIbRs/zpzhW4iY+9OASrdY7Wo0jKX48nX3lZPzL3o1h8H+GMXOAAAAAElFTkSuQmCC"
+                                                                    style="width:30px;height:30px;margin-left:-2px;margin-top:-13px;"><br>Fuel
+                                                            </h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="others" style="display:none;">
+                                            <div class="inbox-right scroll"
+                                                 style="border : 1px   solid; overflow: auto; height: 600px;">
+                                                <h4>Others</h4>
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr class="table-row"
+                                                        ng-repeat="o in Others[1]">
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-calendar"></i>&nbsp;&nbsp;<b>
+                                                                {{o.date| date:'MM/dd/yyyy
+                                                                h:mma'}}</b></p>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <p><i class="fa fa-rupee"></i>&nbsp;<b>{{o.money}}</b>
+                                                            </p>
+                                                            <p>Recevied on this week sun</p>
+                                                        </td>
+                                                        <td>
+                                                            <div><h6 style="font-size:12px;"><i
+                                                                    class="fa fa-list"
+                                                                    style="color:blue;font-size:18px; margin-top:-13px; margin-left:13px;"></i><br>Others
+                                                            </h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <br/>
+
+                                    </div>
+
+                                    <br/><br/><br/>
+                                    <div class="inner-block">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Jquery JS-->
+                <script src="vendor/jquery-3.2.1.min.js"></script>
+                <!-- Bootstrap JS-->
+                <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+                <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+                <!-- Vendor JS       -->
+                <script src="vendor/slick/slick.min.js">
+                </script>
+                <script src="vendor/wow/wow.min.js"></script>
+                <script src="vendor/animsition/animsition.min.js"></script>
+                <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+                </script>
+                <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+                <script src="vendor/counter-up/jquery.counterup.min.js">
+                </script>
+                <script src="vendor/circle-progress/circle-progress.min.js"></script>
+                <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+                <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+                <script src="vendor/select2/select2.min.js">
+                </script>
+
+                <!-- Main JS-->
+                <script src="js/main.js"></script>
+                <script src="js/angular.min.js"></script>
+
+                <!-- controller app -->
+                <script>
+                    function myFun() {
+                        var x = document.getElementById("p2");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function expenditure() {
+                        var x = document.getElementById("p3");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function home() {
+                        var x = document.getElementById("p1");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+
+                            document.getElementById('p3').style.display = 'none';
+
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function loan() {
+                        var x = document.getElementById("p4");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function tamount() {
+                        var x = document.getElementById("p5");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function customerlist() {
+                        var x = document.getElementById("p6");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p7').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+
+                    function report() {
+                        var x = document.getElementById("p7");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p1').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('p3').style.display = 'none';
+                            document.getElementById('p1').style.display = 'block';
+                            document.getElementById('p2').style.display = 'none';
+                            document.getElementById('p4').style.display = 'none';
+                            document.getElementById('p5').style.display = 'none';
+                            document.getElementById('p6').style.display = 'none';
+                            document.getElementById('table').style.display = 'none';
+
+
+                        }
+                    }
+                </script>
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("myDIV");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+                        }
+                    }
+                </script>
+                <script>
+                    function myFuntable() {
+                        var x = document.getElementById("mydiv");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        }
+                    }
+                </script>
+                <script>
+                    function mylent() {
+                        var x = document.getElementById("lent");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        }
+                    }
+                </script>
+                <script>
+                    function myInve() {
+                        var x = document.getElementById("invest");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        }
+                    }
+                </script>
+                <script>
+                    function myrec() {
+                        var x = document.getElementById("rec");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+
+                        }
+                    }
+                </script>
+                <script>
+                    function myall() {
+                        var x = document.getElementById("all");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('sort').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function datesort() {
+                        var x = document.getElementById("sort");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('all').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function table() {
+                        var x = document.getElementById("table");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('lent').style.display = 'none';
+                            document.getElementById('rec').style.display = 'none';
+                            document.getElementById('invest').style.display = 'none';
+                            document.getElementById('mydiv').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function roomrent() {
+                        var x = document.getElementById("roomrent");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+
+                        } else {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function mobile() {
+                        var x = document.getElementById("mobile");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function fuel() {
+                        var x = document.getElementById("fuel");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+                        }
+                    }
+                </script>
+                <script>
+                    function lightbill() {
+                        var x = document.getElementById("lightbill");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+                        }
+                    }
+                </script>
+                <script>
+                    function salary() {
+                        var x = document.getElementById("salary");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('others').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+
+                        }
+                    }
+                </script>
+                <script>
+                    function others() {
+                        var x = document.getElementById("others");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+
+                        } else {
+                            x.style.display = "none";
+                            document.getElementById('mobile').style.display = 'none';
+                            document.getElementById('roomrent').style.display = 'none';
+                            document.getElementById('lightbill').style.display = 'none';
+                            document.getElementById('fuel').style.display = 'none';
+                            document.getElementById('salary').style.display = 'none';
+                        }
+                    }
+                </script>
+
+                <script>
+                    var app = angular.module('app', ['easypiechart']);
+                    app.controller('chartCtrl', function ($scope, $http, $window, $timeout) {
+                        $scope.percent = 0;
+                        $scope.options = {
+                            animate: {
+                                duration: 0,
+                                enabled: false
+                            },
+                            barColor: '#2C3E50',
+                            trackColor: '#99FFFF',
+                            scaleColor: false,
+                            lineWidth: 20,
+                            lineCap: 'circle'
+                        };
+
+                        $timeout(function loop() {
+                            $timeout(loop, 100);
+                            //	$scope.percent = ($scope.notification.TAmount/$scope.notification.LAmount)*100;
+                            $scope.percent;
+                            console.log($scope.percent, $scope);
+                        }, 100);
+
+                        $http.get('http://localhost:3009/api/books1/', {}).then(function (response) {
+
+                            $scope.pie = response.data.report;
+                            //var jsonCars = JSON.stringify(cars);
+
+
+                        });
+
+
+                        $scope.table = function () {
+                            var host = $window.location.host;
+                            var landingUrl = "http://" + host + "/table";
+                            //alert(landingUrl);
+                            $window.location.href = landingUrl;
+
+                        };
+                        $http.get('/newuser', {}).then(function (response) {
+                            $scope.newuser = response.data.report;
+                        });
+                        $http.get('/notification', {}).then(function (response) {
+                            $scope.notification = response.data.report;
+                            //var jsonCars = JSON.stringify(cars);
+                        });
+
+
+                        $scope.updatenote = function () {
+
+                            $scope.loader.loading = true;
+
+                            $http.get('/updatenote')
+                                .then(function (response) {
+
+                                    $scope.update = response.data.report;
+
+                                })
+
+                        };
+
+
+                        $http.get('/api/roomrent')
+                            .then(function (response) {
+
+                                $scope.Room_Rent = response.data.Room_Rent;
+
+                            });
+
+
+                        $http.get('/api/mobile_bill')
+                            .then(function (response) {
+
+                                $scope.mobile_bill = response.data.mobile_bill;
+
+                            });
+
+
+                        $http.get('/api/light_bill')
+                            .then(function (response) {
+
+                                $scope.light_bill = response.data.light_bill;
+
+                            });
+
+
+                        $http.get('/api/payment')
+                            .then(function (response) {
+
+                                $scope.payment = response.data.payment;
+
+                            });
+
+
+                        $http.get('/api/petrol')
+                            .then(function (response) {
+
+                                $scope.Petrol = response.data.Petrol;
+
+                            });
+
+
+                        $http.get('/api/others')
+                            .then(function (response) {
+
+                                $scope.Others = response.data.Others;
+
+                            });
+                        $scope.expend = function () {
+
+                            $http.post('/api/expend', {
+
+                                'Payment': $scope.Payment,
+                                'expenses': $scope.expenses,
+
+                                'date': $scope.date
+
+                            })
+                                .then(function (response) {
+                                    $scope.expend = response.data.expenditure;
+                                    var host = $window.location.host;
+                                    var landingUrl = "http://" + host + "/expenses";
+                                    //alert(landingUrl);
+                                    $window.location.href = landingUrl;
+
+
+                                });
+
+                        };
+
+//http://localhost:3009/updatenote
+
+                        $scope.logout = function () {
+                            var host = $window.location.host;
+                            var landingUrl = "http://" + host + "/";
+                            //alert(landingUrl);
+                            $window.location.href = landingUrl;
+
+                        };
+
+                    });
+                </script>
+
+</body>
+
+</html>
+<!-- end document-->

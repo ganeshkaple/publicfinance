@@ -159,7 +159,7 @@
         <!-- MENU SIDEBAR-->
           <aside class="menu-sidebar d-none d-lg-block sidebar-icon" id="menu">
             <div class="logo" class="sidebar-icon">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -183,7 +183,7 @@
                         </li>
 						<li class="has-sub">
 						<li>
-                            <a href="expenses.html">
+                            <a href="expenses2.html">
                                 <i class="fas fa-calendar-alt"></i>Expenses</a>
                         </li>
 						</li>
@@ -312,7 +312,11 @@
                         <section>
                  <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="card-header">Customer Registration Form</div>
+                                    <div class="card-header">
+                                        <div ng-repeat="newuser in newuser"><b><i
+                                                class="fa fa-user"></i>&nbsp;{{newuser.fullname}}
+                                            <b></div>
+                                    </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" class="">
                                             <div class="form-group">
@@ -331,7 +335,8 @@
                                                     <input type="date" ng-model="startdate" value="startdate" class="form-control">
                                                 </div>
                                             </div>
-											<div class="form-group">
+
+                                            <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                        <i class="fa fa-calendar" ></i>
@@ -339,7 +344,21 @@
                                                     <input type="date" ng-model="enddate"  class="form-control">
                                                 </div>
                                             </div>
-											<div class="form-group">
+                                            <div id="interests">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calculator"></i>
+                                                        </div>
+                                                        <input type="text" ng-model="interestamount"
+                                                               placeholder="pre calculated interest"
+                                                               onclick="interest()"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" id="interest"
+                                                     style="display:none;">
+                                                    <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                        <i class="fa fa-cc-visa" style="font-size:13px;"></i>
@@ -357,41 +376,121 @@
 										</select>
                                             </div>
                                             </div>
-											
-                                            <div class="form-group">
+
+                                                    <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-rupee" style="font-size:22px;"></i>
+                                                        <i class="fa fa-rupee"></i>
                                                     </div>
-                                                    <input type="text"  ng-model="installement_amount" placeholder="Installement Amount" class="form-control">
+                                                    <input type="text"
+                                                           ng-model="installement_amount"
+                                                           placeholder="installement_amount"
+                                                           class="form-control">
+
+                                                </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
-											
-                                            <div class="form-group">
+                                            <div id="interest1" style="displya:none;">
+                                                <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-calculator" ></i>
                                                     </div>
-                                                    <input type="text"  ng-model="interest" placeholder="Rate of Interest" class="form-control">
+                                                    <input type="text" ng-model="interest"
+                                                           onclick="interests()"
+                                                           placeholder="Rate of Interest"
+                                                           class="form-control">
                                                 </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-cc-visa"
+                                                               style="font-size:13px;"></i>
+                                                        </div>
+                                                        <select ng-model="installementtype"
+                                                                class="form-control">
+                                                            <option value="">Installement Type
+                                                            </option>
+                                                            <option value="monthly">Monthly</option>
+                                                            <option value="daily">Daily</option>
+                                                            <option value="weekly">Weekly</option>
+                                                            <option value="biweekly">Bi-Weekly
+                                                            </option>
+                                                            <option value="bimonthly">Bi-Monthly
+                                                            </option>
+                                                            <option value="quaterly">Quarterly
+                                                            </option>
+                                                            <option value="halfyearly">Half Yearly
+                                                            </option>
+                                                            <option value="yearly">Yearly</option>
+                                                        </select>
+                                                    </div>
                                             </div>
 											 <div class="form-group">
                                                 <div class="input-group">
-                                                    
-                                                    <input type="hidden" ng-model="cid" class="form-control">
-                                                </div>
-                                            </div>
-											<div class="form-group">
-                                                <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-credit-card" style="font-size:13px;"></i>
+                                                        <i class="fa fa-rupee"></i>
                                                     </div>
-                                                    <input type="text"  ng-model="trepayamount" placeholder="Total RePay Amount"  class="form-control">
+                                                    <input type="text"
+                                                           ng-model="installement_amount"
+                                                           placeholder="installement_amount"
+                                                           class="form-control">
+                                                    <select ng-model="inputtype">
+                                                        <option value="">select one installment
+                                                            type
+                                                        </option>
+                                                        <option value="predefined">predefined
+                                                        </option>
+                                                        <option value="userdefined">userdefined
+                                                        </option>
+                                                        <option value="custom">custom</option>
+                                                    </select>
+                                                </div>
+                                             </div>
+
+                                            </div>
+                                            <!-- 	<div id="interest" style="display:none;">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calculator" ></i>
+                                                        </div>
+                                                        <input type="text"  ng-model="interest" placeholder="Rate of Interest" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-rupee" ></i>
+                                                        </div>
+                                                        <input type="text"  ng-model="installement_amount" placeholder="installement_amount" class="form-control">
+                                                    <select ng-model="inputtype">
+                                                    <option value="">select one installment type</option>
+                                                    <option value="predefined">predefined</option>
+                                                    <option value="userdefined">userdefined</option>
+                                                    <option value="custom">custom</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                             </div> -->
+
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+
+                                                    <input type="hidden" ng-model="cid"
+                                                           class="form-control">
                                                 </div>
                                             </div>
+
                                             <div class="form-actions form-group">
                                                 <button type="submit"  ng-click="createLoan()" class="btn btn-success btn-sm">Submit</button>
                                             </div>
+                                    </div>
                                         </form>
                                     </div>
                                 </div>
@@ -439,6 +538,31 @@
 	  
 	  <!-- controller app -->
 	  <script src="js/app.js"></script>
+<script>
+
+    function interest() {
+        var x = document.getElementById("interest");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById('interest1').style.display = 'none';
+        } else {
+            x.style.display = "none";
+            document.getElementById('interest1').style.display = 'block';
+        }
+    }
+
+    function interests() {
+        var x = document.getElementById("interests");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById('interest2').style.display = 'block';
+        } else {
+            x.style.display = "none";
+            document.getElementById('interest2').style.display = 'none';
+        }
+    }
+
+</script>
 	   <script>
 var app = angular.module('my-app', []);
 
@@ -449,7 +573,8 @@ app.config(['$qProvider', function ($qProvider) {
   $scope.name = "world";
   //$scope.mydate = new Date("2015-07-08T15:10:10.530Z");
   $scope.createLoan= function(){
-  
+      var loan_amount = $scope.loan_amount;
+      var interest = $scope.interest;
   var startdate = $scope.startdate;
    var enddate = $scope.enddate;
    var cid = $scope.cid;
@@ -468,15 +593,100 @@ app.config(['$qProvider', function ($qProvider) {
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 	
 var dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
-//console.log( dayDifference);
+      $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      var dayDifference1 = dayDifference / 30;
+      console.log(dayDifference);
+      console.log(startdate);
+      console.log(enddate);
+      var userdefined, custom, predefined;
+      var inputtype = $scope.inputtype;
+
+      var interestamount;
+      var interestamount1;
+      var interestamount1 = (loan_amount / dayDifference1);
+      var interestamount = (loan_amount * (interest / 100) * dayDifference1);
+      $scope.interestamount = (loan_amount * (interest / 100) * dayDifference1);
+      console.log(interestamount);
 $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
 $scope.loan_id  = Math.floor(Math.random()*(1000000000-1))+1;
-//weekly  weekly weekly weekly weekly weekly weekly weekly weekly weekly
-  if(installementtype == 'weekly'){
+//weeklyweeklyweeklyweeklyweekly:
+      if (installementtype == 'weekly') {
 n = parseInt(dayDifference/7);
 $scope.noofinstallement = n;
-console.log(Math.ceil(n));
+          console.log(4);
+
+
+          if (inputtype == 'userdefined') {
+              console.log(interestamount);
+              console.log(loan_amount);
+              var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+              console.log((loan_amount + interestamount) / n);
+              $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+              var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+              for (var i = 0; i < n; i++) {
+                  startdate.setDate(startdate.getDate() + parseInt(7));
+                  var dd = startdate.getDate();
+                  var mm = startdate.getMonth() + 1;
+                  var y = startdate.getFullYear();
+                  var startdates = mm + '/' + dd + '/' + y;
+                  mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+              }
+              if ($http.post('/api/loanusers', {
+                  'loan_id': $scope.loan_id,
+                  'loan_amount': $scope.loan_amount,
+                  'enddate': $scope.enddate,
+                  'startdate': $scope.startdate,
+                  'installementtype': $scope.installementtype,
+                  'noofinstallement': $scope.noofinstallement,
+                  'interest': $scope.interest,
+                  'cid': JSON.stringify(cid),
+                  'dayDifference': $scope.dayDifference,
+                  'trepayamount': $scope.trepayamount
+
+
+              })
+                  .then(function (response) {
+
+                      var host = $window.location.host;
+                      var landingUrl = "http://" + host + "/userprofile1";
+                      //alert(landingUrl);
+                      $window.location.href = landingUrl;
+
+
+                  })) {
+                  if ($http.post('/api/insertmydate', {
+                      'loan_id': $scope.loan_id,
+                      'installement_amount': $scope.installement_amount,
+                      'mydate': mydate
+
+                  })
+                      .then(function (response) {
+
+
+                      })) {
+                  }
+              }
+          }
+      <
+          !--;
+      else
+          if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+          else
+              if (inputtype == 'custom') {
+                  console.log(interestamount);
+                  var installement_amount = interestamount;
+                  console.log(installement_amount);
+                  $scope.installement_amount = interestamount;
 var mydate = [];
 
 //$scope.mydate = [];
@@ -490,7 +700,7 @@ startdate.setDate(startdate.getDate() + parseInt(7));
  mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
 }
- if($http.post('/api/loanusers', {
+                  if ($http.post('/api/loanusers', {
             'loan_id' :$scope.loan_id,
             'loan_amount': $scope.loan_amount,
 			'enddate': $scope.enddate,
@@ -502,110 +712,6 @@ startdate.setDate(startdate.getDate() + parseInt(7));
 			'dayDifference': $scope.dayDifference,
 			'trepayamount': $scope.trepayamount
 			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
-        var landingUrl = "http://" + host + "/userprofile1";
-        //alert(landingUrl);
-        $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-            'loan_id': $scope.loan_id, 
-            'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			// monthlymonthlymonthlymonthlymonthlymonthlymonthlymonthlymonthlymonthly
- }else    if(installementtype == 'monthly'){
-n = parseInt(dayDifference/30);
-$scope.noofinstallement = n;
-console.log(Math.ceil(n));
-var mydate = [];
-
-//$scope.mydate = [];
-//alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(30)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
-//console.log(mydate.push(new Date(startdate)));
-}
-if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
-        var landingUrl = "http://" + host + "/userprofile1";
-        //alert(landingUrl);
-        $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-            'loan_id': $scope.loan_id, 
-            'installement_amount': $scope.installement_amount,			
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			//dailydailydailydailydailydailydailydailydailydailydailydailydailydailydailydaily
- }else    if(installementtype == 'daily'){
-n = parseInt(dayDifference/1);
-$scope.noofinstallement = n;
-console.log(Math.ceil(n));
-var mydate = [];
-
-//$scope.mydate = [];
-//alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(1)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
-//console.log(mydate.push(new Date(startdate)));
-}
- if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-		
           
         })
 		 .then(function (response) {
@@ -619,7 +725,7 @@ startdate.setDate(startdate.getDate() + parseInt(1));
             })){
 			if($http.post('/api/insertmydate', {
             'loan_id': $scope.loan_id,
-            'installement_amount': $scope.installement_amount,			
+                'installement_amount': $scope.installement_amount,
             'mydate' : mydate
             
         })
@@ -628,314 +734,1289 @@ startdate.setDate(startdate.getDate() + parseInt(1));
     	
 				
             })){}}
-			//biweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweekly
- }else    if(installementtype == 'biweekly'){
+              } else {
+                  var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                  for (var i = 0; i < n; i++) {
+                      startdate.setDate(startdate.getDate() + parseInt(7));
+                      var dd = startdate.getDate();
+                      var mm = startdate.getMonth() + 1;
+                      var y = startdate.getFullYear();
+                      var startdates = mm + '/' + dd + '/' + y;
+                      mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                  }
+                  if ($http.post('/api/loanuserss', {
+                      'loan_id': $scope.loan_id,
+                      'loan_amount': $scope.loan_amount,
+                      'enddate': $scope.enddate,
+                      'startdate': $scope.startdate,
+                      'installementtype': $scope.installementtype,
+                      'noofinstallement': $scope.noofinstallement,
+
+                      'cid': JSON.stringify(cid),
+                      'dayDifference': $scope.dayDifference
+
+
+                  })
+                      .then(function (response) {
+
+                          var host = $window.location.host;
+                          var landingUrl = "http://" + host + "/userprofile1";
+                          //alert(landingUrl);
+                          $window.location.href = landingUrl;
+
+
+                      })) {
+                      if ($http.post('/api/insertmydate', {
+                          'loan_id': $scope.loan_id,
+                          'installement_amount': $scope.installement_amount,
+                          'mydate': mydate
+
+                      })
+                          .then(function (response) {
+
+
+                          })) {
+                      }
+                  }
+
+              }
+          }
+
+          else if (installementtype == 'monthly') {
+n = parseInt(dayDifference/30);
+$scope.noofinstallement = n;
+console.log(Math.ceil(n));
+
+
+              if (inputtype == 'userdefined') {
+                  console.log(interestamount);
+                  console.log(loan_amount);
+                  var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                  console.log((loan_amount + interestamount) / n);
+                  $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                  for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(30));
+                      var dd = startdate.getDate();
+                      var mm = startdate.getMonth() + 1;
+                      var y = startdate.getFullYear();
+                      var startdates = mm + '/' + dd + '/' + y;
+                      mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+}
+if($http.post('/api/loanusers', {
+    'loan_id' :$scope.loan_id,
+    'loan_amount': $scope.loan_amount,
+    'enddate': $scope.enddate,
+    'startdate': $scope.startdate,
+    'installementtype': $scope.installementtype,
+    'noofinstallement': $scope.noofinstallement,
+    'interest': $scope.interest,
+    'cid': JSON.stringify(cid),
+    'dayDifference': $scope.dayDifference,
+    'trepayamount': $scope.trepayamount
+
+
+})
+    .then(function (response) {
+
+        var host = $window.location.host;
+        var landingUrl = "http://" + host + "/userprofile1";
+        //alert(landingUrl);
+        $window.location.href = landingUrl;
+
+
+    })){
+    if($http.post('/api/insertmydate', {
+        'loan_id': $scope.loan_id,
+        'installement_amount': $scope.installement_amount,
+        'mydate' : mydate
+
+    })
+        .then(function (response) {
+
+
+        })){}}
+              }
+          <
+              !--;
+          else
+              if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+              else
+                  if (inputtype == 'custom') {
+                      console.log(interestamount);
+                      var installement_amount = interestamount;
+                      console.log(installement_amount);
+                      $scope.installement_amount = interestamount;
+                      var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                      for (var i = 0; i < n; i++) {
+                          startdate.setDate(startdate.getDate() + parseInt(30));
+                          var dd = startdate.getDate();
+                          var mm = startdate.getMonth() + 1;
+                          var y = startdate.getFullYear();
+                          var startdates = mm + '/' + dd + '/' + y;
+                          mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                      }
+                      if ($http.post('/api/loanusers', {
+                          'loan_id': $scope.loan_id,
+                          'loan_amount': $scope.loan_amount,
+                          'enddate': $scope.enddate,
+                          'startdate': $scope.startdate,
+                          'installementtype': $scope.installementtype,
+                          'noofinstallement': $scope.noofinstallement,
+                          'interest': $scope.interest,
+                          'cid': JSON.stringify(cid),
+                          'dayDifference': $scope.dayDifference,
+                          'trepayamount': $scope.trepayamount
+
+
+                      })
+                          .then(function (response) {
+
+                              var host = $window.location.host;
+                              var landingUrl = "http://" + host + "/userprofile1";
+                              //alert(landingUrl);
+                              $window.location.href = landingUrl;
+
+
+                          })) {
+                          if ($http.post('/api/insertmydate', {
+                              'loan_id': $scope.loan_id,
+                              'installement_amount': $scope.installement_amount,
+                              'mydate': mydate
+
+                          })
+                              .then(function (response) {
+
+
+                              })) {
+                          }
+                      }
+                  } else {
+                      var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                      for (var i = 0; i < n; i++) {
+                          startdate.setDate(startdate.getDate() + parseInt(30));
+                          var dd = startdate.getDate();
+                          var mm = startdate.getMonth() + 1;
+                          var y = startdate.getFullYear();
+                          var startdates = mm + '/' + dd + '/' + y;
+                          mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                      }
+                      if ($http.post('/api/loanuserss', {
+                          'loan_id': $scope.loan_id,
+                          'loan_amount': $scope.loan_amount,
+                          'enddate': $scope.enddate,
+                          'startdate': $scope.startdate,
+                          'installementtype': $scope.installementtype,
+                          'noofinstallement': $scope.noofinstallement,
+
+                          'cid': JSON.stringify(cid),
+                          'dayDifference': $scope.dayDifference
+
+
+                      })
+                          .then(function (response) {
+
+                              var host = $window.location.host;
+                              var landingUrl = "http://" + host + "/userprofile1";
+                              //alert(landingUrl);
+                              $window.location.href = landingUrl;
+
+
+                          })) {
+                          if ($http.post('/api/insertmydate', {
+                              'loan_id': $scope.loan_id,
+                              'installement_amount': $scope.installement_amount,
+                              'mydate': mydate
+
+                          })
+                              .then(function (response) {
+
+
+                              })) {
+                          }
+                      }
+
+                  }
+              }
+              //dailydailydailydailydailydailydailydailydailydailydailydailydailydailydailydaily
+              else if (installementtype == 'daily') {
+n = parseInt(dayDifference/1);
+$scope.noofinstallement = n;
+console.log(Math.ceil(n));
+
+                  if (inputtype == 'userdefined') {
+                      console.log(interestamount);
+                      console.log(loan_amount);
+                      var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                      console.log((loan_amount + interestamount) / n);
+                      $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                      for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(1));
+                          var dd = startdate.getDate();
+                          var mm = startdate.getMonth() + 1;
+                          var y = startdate.getFullYear();
+                          var startdates = mm + '/' + dd + '/' + y;
+                          mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+}
+                      if ($http.post('/api/loanusers', {
+                          'loan_id' :$scope.loan_id,
+                          'loan_amount': $scope.loan_amount,
+                          'enddate': $scope.enddate,
+                          'startdate': $scope.startdate,
+                          'installementtype': $scope.installementtype,
+                          'noofinstallement': $scope.noofinstallement,
+                          'interest': $scope.interest,
+                          'cid': JSON.stringify(cid),
+                          'dayDifference': $scope.dayDifference,
+                          'trepayamount': $scope.trepayamount
+
+
+                      })
+                          .then(function (response) {
+
+                              var host = $window.location.host;
+                              var landingUrl = "http://" + host + "/userprofile1";
+                              //alert(landingUrl);
+                              $window.location.href = landingUrl;
+
+
+                          })){
+                          if($http.post('/api/insertmydate', {
+                              'loan_id': $scope.loan_id,
+                              'installement_amount': $scope.installement_amount,
+                              'mydate' : mydate
+
+                          })
+                              .then(function (response) {
+
+
+                              })){}}
+                  }
+              <
+                  !--;
+              else
+                  if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                  else
+                      if (inputtype == 'custom') {
+                          console.log(interestamount);
+                          var installement_amount = interestamount;
+                          console.log(installement_amount);
+                          $scope.installement_amount = interestamount;
+                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                          for (var i = 0; i < n; i++) {
+                              startdate.setDate(startdate.getDate() + parseInt(1));
+                              var dd = startdate.getDate();
+                              var mm = startdate.getMonth() + 1;
+                              var y = startdate.getFullYear();
+                              var startdates = mm + '/' + dd + '/' + y;
+                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                          }
+                          if ($http.post('/api/loanusers', {
+                              'loan_id': $scope.loan_id,
+                              'loan_amount': $scope.loan_amount,
+                              'enddate': $scope.enddate,
+                              'startdate': $scope.startdate,
+                              'installementtype': $scope.installementtype,
+                              'noofinstallement': $scope.noofinstallement,
+                              'interest': $scope.interest,
+                              'cid': JSON.stringify(cid),
+                              'dayDifference': $scope.dayDifference,
+                              'trepayamount': $scope.trepayamount
+
+
+                          })
+                              .then(function (response) {
+
+                                  var host = $window.location.host;
+                                  var landingUrl = "http://" + host + "/userprofile1";
+                                  //alert(landingUrl);
+                                  $window.location.href = landingUrl;
+
+
+                              })) {
+                              if ($http.post('/api/insertmydate', {
+                                  'loan_id': $scope.loan_id,
+                                  'installement_amount': $scope.installement_amount,
+                                  'mydate': mydate
+
+                              })
+                                  .then(function (response) {
+
+
+                                  })) {
+                              }
+                          }
+                      } else {
+                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                          for (var i = 0; i < n; i++) {
+                              startdate.setDate(startdate.getDate() + parseInt(1));
+                              var dd = startdate.getDate();
+                              var mm = startdate.getMonth() + 1;
+                              var y = startdate.getFullYear();
+                              var startdates = mm + '/' + dd + '/' + y;
+                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                          }
+                          if ($http.post('/api/loanuserss', {
+                              'loan_id': $scope.loan_id,
+                              'loan_amount': $scope.loan_amount,
+                              'enddate': $scope.enddate,
+                              'startdate': $scope.startdate,
+                              'installementtype': $scope.installementtype,
+                              'noofinstallement': $scope.noofinstallement,
+
+                              'cid': JSON.stringify(cid),
+                              'dayDifference': $scope.dayDifference
+
+
+                          })
+                              .then(function (response) {
+
+                                  var host = $window.location.host;
+                                  var landingUrl = "http://" + host + "/userprofile1";
+                                  //alert(landingUrl);
+                                  $window.location.href = landingUrl;
+
+
+                              })) {
+                              if ($http.post('/api/insertmydate', {
+                                  'loan_id': $scope.loan_id,
+                                  'installement_amount': $scope.installement_amount,
+                                  'mydate': mydate
+
+                              })
+                                  .then(function (response) {
+
+
+                                  })) {
+                              }
+                          }
+
+                      }
+                      //biweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweeklybiweekly
+                  }else    if(installementtype == 'biweekly'){
 n = parseInt(dayDifference/14);
 $scope.noofinstallement = n;
 console.log(Math.ceil(n));
+
+                      if (inputtype == 'userdefined') {
+                          console.log(interestamount);
+                          console.log(loan_amount);
+                          var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                          console.log((loan_amount + interestamount) / n);
+                          $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                          for (var i = 0; i < n; i++) {
+                              startdate.setDate(startdate.getDate() + parseInt(14));
+                              var dd = startdate.getDate();
+                              var mm = startdate.getMonth() + 1;
+                              var y = startdate.getFullYear();
+                              var startdates = mm + '/' + dd + '/' + y;
+                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                          }
+                          if ($http.post('/api/loanusers', {
+                              'loan_id': $scope.loan_id,
+                              'loan_amount': $scope.loan_amount,
+                              'enddate': $scope.enddate,
+                              'startdate': $scope.startdate,
+                              'installementtype': $scope.installementtype,
+                              'noofinstallement': $scope.noofinstallement,
+                              'interest': $scope.interest,
+                              'cid': JSON.stringify(cid),
+                              'dayDifference': $scope.dayDifference,
+                              'trepayamount': $scope.trepayamount
+
+
+                          })
+                              .then(function (response) {
+
+                                  var host = $window.location.host;
+                                  var landingUrl = "http://" + host + "/userprofile1";
+                                  //alert(landingUrl);
+                                  $window.location.href = landingUrl;
+
+
+                              })) {
+                              if ($http.post('/api/insertmydate', {
+                                  'loan_id': $scope.loan_id,
+                                  'installement_amount': $scope.installement_amount,
+                                  'mydate': mydate
+
+                              })
+                                  .then(function (response) {
+
+
+                                  })) {
+                              }
+                          }
+                      }
+                  <
+                      !--;
+                  else
+                      if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                      else
+                          if (inputtype == 'custom') {
+                              console.log(interestamount);
+                              var installement_amount = interestamount;
+                              console.log(installement_amount);
+                              $scope.installement_amount = interestamount;
 var mydate = [];
 
 //$scope.mydate = [];
 //alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(14)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
+                              for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(14));
+                                  var dd = startdate.getDate();
+                                  var mm = startdate.getMonth() + 1;
+                                  var y = startdate.getFullYear();
+                                  var startdates = mm + '/' + dd + '/' + y;
+                                  mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
 }
 if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
+    'loan_id' :$scope.loan_id,
+    'loan_amount': $scope.loan_amount,
+    'enddate': $scope.enddate,
+    'startdate': $scope.startdate,
+    'installementtype': $scope.installementtype,
+    'noofinstallement': $scope.noofinstallement,
+    'interest': $scope.interest,
+    'cid': JSON.stringify(cid),
+    'dayDifference': $scope.dayDifference,
+    'trepayamount': $scope.trepayamount
+
+
+})
+    .then(function (response) {
+
+        var host = $window.location.host;
         var landingUrl = "http://" + host + "/userprofile1";
         //alert(landingUrl);
         $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-                    'loan_id': $scope.loan_id, 
-'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			//bimonthlybimonthlybimonthlybimonthlybimonthlybimonthlybimonthlybimonthly
- }else    if(installementtype == 'bimonthly'){
+
+
+    })){
+    if($http.post('/api/insertmydate', {
+        'loan_id': $scope.loan_id,
+        'installement_amount': $scope.installement_amount,
+        'mydate' : mydate
+
+    })
+        .then(function (response) {
+
+
+        })){}}
+                          } else {
+                              var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                              for (var i = 0; i < n; i++) {
+                                  startdate.setDate(startdate.getDate() + parseInt(14));
+                                  var dd = startdate.getDate();
+                                  var mm = startdate.getMonth() + 1;
+                                  var y = startdate.getFullYear();
+                                  var startdates = mm + '/' + dd + '/' + y;
+                                  mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                              }
+                              if ($http.post('/api/loanuserss', {
+                                  'loan_id': $scope.loan_id,
+                                  'loan_amount': $scope.loan_amount,
+                                  'enddate': $scope.enddate,
+                                  'startdate': $scope.startdate,
+                                  'installementtype': $scope.installementtype,
+                                  'noofinstallement': $scope.noofinstallement,
+
+                                  'cid': JSON.stringify(cid),
+                                  'dayDifference': $scope.dayDifference
+
+
+                              })
+                                  .then(function (response) {
+
+                                      var host = $window.location.host;
+                                      var landingUrl = "http://" + host + "/userprofile1";
+                                      //alert(landingUrl);
+                                      $window.location.href = landingUrl;
+
+
+                                  })) {
+                                  if ($http.post('/api/insertmydate', {
+                                      'loan_id': $scope.loan_id,
+                                      'installement_amount': $scope.installement_amount,
+                                      'mydate': mydate
+
+                                  })
+                                      .then(function (response) {
+
+
+                                      })) {
+                                  }
+                              }
+
+                          }
+                          //bimonthlybimonthlybimonthlybimonthlybimonthlybimonthlybimonthlybimonthly
+                      }else    if(installementtype == 'bimonthly'){
 n = parseInt(dayDifference/60);
 $scope.noofinstallement = n;
 console.log(Math.ceil(n));
+
+                          if (inputtype == 'userdefined') {
+                              console.log(interestamount);
+                              console.log(loan_amount);
+                              var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                              console.log((loan_amount + interestamount) / n);
+                              $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
 var mydate = [];
 
 //$scope.mydate = [];
 //alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(60)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
+                              for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(60));
+                                  var dd = startdate.getDate();
+                                  var mm = startdate.getMonth() + 1;
+                                  var y = startdate.getFullYear();
+                                  var startdates = mm + '/' + dd + '/' + y;
+                                  mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
-} if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
-        var landingUrl = "http://" + host + "/userprofile1";
-        //alert(landingUrl);
-        $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-                    'loan_id': $scope.loan_id, 
-'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			//quaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterly
- }else    if(installementtype == 'quaterly'){
+                              }
+                              if ($http.post('/api/loanusers', {
+                                  'loan_id' :$scope.loan_id,
+                                  'loan_amount': $scope.loan_amount,
+                                  'enddate': $scope.enddate,
+                                  'startdate': $scope.startdate,
+                                  'installementtype': $scope.installementtype,
+                                  'noofinstallement': $scope.noofinstallement,
+                                  'interest': $scope.interest,
+                                  'cid': JSON.stringify(cid),
+                                  'dayDifference': $scope.dayDifference,
+                                  'trepayamount': $scope.trepayamount
+
+
+                              })
+                                  .then(function (response) {
+
+                                      var host = $window.location.host;
+                                      var landingUrl = "http://" + host + "/userprofile1";
+                                      //alert(landingUrl);
+                                      $window.location.href = landingUrl;
+
+
+                                  })){
+                                  if($http.post('/api/insertmydate', {
+                                      'loan_id': $scope.loan_id,
+                                      'installement_amount': $scope.installement_amount,
+                                      'mydate' : mydate
+
+                                  })
+                                      .then(function (response) {
+
+
+                                      })){}}
+                          }
+                      <
+                          !--;
+                      else
+                          if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                          else
+                              if (inputtype == 'custom') {
+                                  console.log(interestamount);
+                                  var installement_amount = interestamount;
+                                  console.log(installement_amount);
+                                  $scope.installement_amount = interestamount;
+                                  var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                  for (var i = 0; i < n; i++) {
+                                      startdate.setDate(startdate.getDate() + parseInt(60));
+                                      var dd = startdate.getDate();
+                                      var mm = startdate.getMonth() + 1;
+                                      var y = startdate.getFullYear();
+                                      var startdates = mm + '/' + dd + '/' + y;
+                                      mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                  }
+                                  if ($http.post('/api/loanusers', {
+                                      'loan_id': $scope.loan_id,
+                                      'loan_amount': $scope.loan_amount,
+                                      'enddate': $scope.enddate,
+                                      'startdate': $scope.startdate,
+                                      'installementtype': $scope.installementtype,
+                                      'noofinstallement': $scope.noofinstallement,
+                                      'interest': $scope.interest,
+                                      'cid': JSON.stringify(cid),
+                                      'dayDifference': $scope.dayDifference,
+                                      'trepayamount': $scope.trepayamount
+
+
+                                  })
+                                      .then(function (response) {
+
+                                          var host = $window.location.host;
+                                          var landingUrl = "http://" + host + "/userprofile1";
+                                          //alert(landingUrl);
+                                          $window.location.href = landingUrl;
+
+
+                                      })) {
+                                      if ($http.post('/api/insertmydate', {
+                                          'loan_id': $scope.loan_id,
+                                          'installement_amount': $scope.installement_amount,
+                                          'mydate': mydate
+
+                                      })
+                                          .then(function (response) {
+
+
+                                          })) {
+                                      }
+                                  }
+                              } else {
+                                  var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                  for (var i = 0; i < n; i++) {
+                                      startdate.setDate(startdate.getDate() + parseInt(60));
+                                      var dd = startdate.getDate();
+                                      var mm = startdate.getMonth() + 1;
+                                      var y = startdate.getFullYear();
+                                      var startdates = mm + '/' + dd + '/' + y;
+                                      mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                  }
+                                  if ($http.post('/api/loanuserss', {
+                                      'loan_id': $scope.loan_id,
+                                      'loan_amount': $scope.loan_amount,
+                                      'enddate': $scope.enddate,
+                                      'startdate': $scope.startdate,
+                                      'installementtype': $scope.installementtype,
+                                      'noofinstallement': $scope.noofinstallement,
+
+                                      'cid': JSON.stringify(cid),
+                                      'dayDifference': $scope.dayDifference
+
+
+                                  })
+                                      .then(function (response) {
+
+                                          var host = $window.location.host;
+                                          var landingUrl = "http://" + host + "/userprofile1";
+                                          //alert(landingUrl);
+                                          $window.location.href = landingUrl;
+
+
+                                      })) {
+                                      if ($http.post('/api/insertmydate', {
+                                          'loan_id': $scope.loan_id,
+                                          'installement_amount': $scope.installement_amount,
+                                          'mydate': mydate
+
+                                      })
+                                          .then(function (response) {
+
+
+                                          })) {
+                                      }
+                                  }
+
+                              }
+                              //quaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterlyquaterly
+                          }else    if(installementtype == 'quaterly'){
 n = parseInt(dayDifference/90);
 $scope.noofinstallement = n;
 console.log(Math.ceil(n));
+
+                              if (inputtype == 'userdefined') {
+                                  console.log(interestamount);
+                                  console.log(loan_amount);
+                                  var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                                  console.log((loan_amount + interestamount) / n);
+                                  $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                                  var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                  for (var i = 0; i < n; i++) {
+                                      startdate.setDate(startdate.getDate() + parseInt(90));
+                                      var dd = startdate.getDate();
+                                      var mm = startdate.getMonth() + 1;
+                                      var y = startdate.getFullYear();
+                                      var startdates = mm + '/' + dd + '/' + y;
+                                      mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                  }
+                                  if ($http.post('/api/loanusers', {
+                                      'loan_id': $scope.loan_id,
+                                      'loan_amount': $scope.loan_amount,
+                                      'enddate': $scope.enddate,
+                                      'startdate': $scope.startdate,
+                                      'installementtype': $scope.installementtype,
+                                      'noofinstallement': $scope.noofinstallement,
+                                      'interest': $scope.interest,
+                                      'cid': JSON.stringify(cid),
+                                      'dayDifference': $scope.dayDifference,
+                                      'trepayamount': $scope.trepayamount
+
+
+                                  })
+                                      .then(function (response) {
+
+                                          var host = $window.location.host;
+                                          var landingUrl = "http://" + host + "/userprofile1";
+                                          //alert(landingUrl);
+                                          $window.location.href = landingUrl;
+
+
+                                      })) {
+                                      if ($http.post('/api/insertmydate', {
+                                          'loan_id': $scope.loan_id,
+                                          'installement_amount': $scope.installement_amount,
+                                          'mydate': mydate
+
+                                      })
+                                          .then(function (response) {
+
+
+                                          })) {
+                                      }
+                                  }
+                              }
+                          <
+                              !--;
+                          else
+                              if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                              else
+                                  if (inputtype == 'custom') {
+                                      console.log(interestamount);
+                                      var installement_amount = interestamount;
+                                      console.log(installement_amount);
+                                      $scope.installement_amount = interestamount;
 var mydate = [];
 
 //$scope.mydate = [];
 //alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(90)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
+                                      for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(90));
+                                          var dd = startdate.getDate();
+                                          var mm = startdate.getMonth() + 1;
+                                          var y = startdate.getFullYear();
+                                          var startdates = mm + '/' + dd + '/' + y;
+                                          mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
 }
 if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
+    'loan_id' :$scope.loan_id,
+    'loan_amount': $scope.loan_amount,
+    'enddate': $scope.enddate,
+    'startdate': $scope.startdate,
+    'installementtype': $scope.installementtype,
+    'noofinstallement': $scope.noofinstallement,
+    'interest': $scope.interest,
+    'cid': JSON.stringify(cid),
+    'dayDifference': $scope.dayDifference,
+    'trepayamount': $scope.trepayamount
+
+
+})
+    .then(function (response) {
+
+        var host = $window.location.host;
         var landingUrl = "http://" + host + "/userprofile1";
         //alert(landingUrl);
         $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-                    'loan_id': $scope.loan_id,
-'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			//halfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearly
- }else    if(installementtype == 'halfyearly'){
+
+
+    })){
+    if($http.post('/api/insertmydate', {
+        'loan_id': $scope.loan_id,
+        'installement_amount': $scope.installement_amount,
+        'mydate' : mydate
+
+    })
+        .then(function (response) {
+
+
+        })){}}
+                                  } else {
+                                      var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                      for (var i = 0; i < n; i++) {
+                                          startdate.setDate(startdate.getDate() + parseInt(90));
+                                          var dd = startdate.getDate();
+                                          var mm = startdate.getMonth() + 1;
+                                          var y = startdate.getFullYear();
+                                          var startdates = mm + '/' + dd + '/' + y;
+                                          mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                      }
+                                      if ($http.post('/api/loanuserss', {
+                                          'loan_id': $scope.loan_id,
+                                          'loan_amount': $scope.loan_amount,
+                                          'enddate': $scope.enddate,
+                                          'startdate': $scope.startdate,
+                                          'installementtype': $scope.installementtype,
+                                          'noofinstallement': $scope.noofinstallement,
+
+                                          'cid': JSON.stringify(cid),
+                                          'dayDifference': $scope.dayDifference
+
+
+                                      })
+                                          .then(function (response) {
+
+                                              var host = $window.location.host;
+                                              var landingUrl = "http://" + host + "/userprofile1";
+                                              //alert(landingUrl);
+                                              $window.location.href = landingUrl;
+
+
+                                          })) {
+                                          if ($http.post('/api/insertmydate', {
+                                              'loan_id': $scope.loan_id,
+                                              'installement_amount': $scope.installement_amount,
+                                              'mydate': mydate
+
+                                          })
+                                              .then(function (response) {
+
+
+                                              })) {
+                                          }
+                                      }
+
+                                  }
+                                  //halfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearlyhalfyearly
+                              }else    if(installementtype == 'halfyearly'){
 n = parseInt(dayDifference/180);
 $scope.noofinstallement = n;
 console.log(Math.ceil(n));
+
+                                  if (inputtype == 'userdefined') {
+                                      console.log(interestamount);
+                                      console.log(loan_amount);
+                                      var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                                      console.log((loan_amount + interestamount) / n);
+                                      $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
 var mydate = [];
 
 //$scope.mydate = [];
 //alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(180)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
+                                      for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(180));
+                                          var dd = startdate.getDate();
+                                          var mm = startdate.getMonth() + 1;
+                                          var y = startdate.getFullYear();
+                                          var startdates = mm + '/' + dd + '/' + y;
+                                          mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
 }
 if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
+    'loan_id' :$scope.loan_id,
+    'loan_amount': $scope.loan_amount,
+    'enddate': $scope.enddate,
+    'startdate': $scope.startdate,
+    'installementtype': $scope.installementtype,
+    'noofinstallement': $scope.noofinstallement,
+    'interest': $scope.interest,
+    'cid': JSON.stringify(cid),
+    'dayDifference': $scope.dayDifference,
+    'trepayamount': $scope.trepayamount
+
+
+})
+    .then(function (response) {
+
+        var host = $window.location.host;
         var landingUrl = "http://" + host + "/userprofile1";
         //alert(landingUrl);
         $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-                    'loan_id': $scope.loan_id, 
-'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
-			//yearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearly
- }else    if(installementtype == 'yearly'){
+
+
+    })){
+    if($http.post('/api/insertmydate', {
+        'loan_id': $scope.loan_id,
+        'installement_amount': $scope.installement_amount,
+        'mydate' : mydate
+
+    })
+        .then(function (response) {
+
+
+        })){}}
+                                  }
+                              <
+                                  !--;
+                              else
+                                  if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                                  else
+                                      if (inputtype == 'custom') {
+                                          console.log(interestamount);
+                                          var installement_amount = interestamount;
+                                          console.log(installement_amount);
+                                          $scope.installement_amount = interestamount;
+                                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                          for (var i = 0; i < n; i++) {
+                                              startdate.setDate(startdate.getDate() + parseInt(180));
+                                              var dd = startdate.getDate();
+                                              var mm = startdate.getMonth() + 1;
+                                              var y = startdate.getFullYear();
+                                              var startdates = mm + '/' + dd + '/' + y;
+                                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                          }
+                                          if ($http.post('/api/loanusers', {
+                                              'loan_id': $scope.loan_id,
+                                              'loan_amount': $scope.loan_amount,
+                                              'enddate': $scope.enddate,
+                                              'startdate': $scope.startdate,
+                                              'installementtype': $scope.installementtype,
+                                              'noofinstallement': $scope.noofinstallement,
+                                              'interest': $scope.interest,
+                                              'cid': JSON.stringify(cid),
+                                              'dayDifference': $scope.dayDifference,
+                                              'trepayamount': $scope.trepayamount
+
+
+                                          })
+                                              .then(function (response) {
+
+                                                  var host = $window.location.host;
+                                                  var landingUrl = "http://" + host + "/userprofile1";
+                                                  //alert(landingUrl);
+                                                  $window.location.href = landingUrl;
+
+
+                                              })) {
+                                              if ($http.post('/api/insertmydate', {
+                                                  'loan_id': $scope.loan_id,
+                                                  'installement_amount': $scope.installement_amount,
+                                                  'mydate': mydate
+
+                                              })
+                                                  .then(function (response) {
+
+
+                                                  })) {
+                                              }
+                                          }
+                                      } else {
+                                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                          for (var i = 0; i < n; i++) {
+                                              startdate.setDate(startdate.getDate() + parseInt(180));
+                                              var dd = startdate.getDate();
+                                              var mm = startdate.getMonth() + 1;
+                                              var y = startdate.getFullYear();
+                                              var startdates = mm + '/' + dd + '/' + y;
+                                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                          }
+                                          if ($http.post('/api/loanuserss', {
+                                              'loan_id': $scope.loan_id,
+                                              'loan_amount': $scope.loan_amount,
+                                              'enddate': $scope.enddate,
+                                              'startdate': $scope.startdate,
+                                              'installementtype': $scope.installementtype,
+                                              'noofinstallement': $scope.noofinstallement,
+
+                                              'cid': JSON.stringify(cid),
+                                              'dayDifference': $scope.dayDifference
+
+
+                                          })
+                                              .then(function (response) {
+
+                                                  var host = $window.location.host;
+                                                  var landingUrl = "http://" + host + "/userprofile1";
+                                                  //alert(landingUrl);
+                                                  $window.location.href = landingUrl;
+
+
+                                              })) {
+                                              if ($http.post('/api/insertmydate', {
+                                                  'loan_id': $scope.loan_id,
+                                                  'installement_amount': $scope.installement_amount,
+                                                  'mydate': mydate
+
+                                              })
+                                                  .then(function (response) {
+
+
+                                                  })) {
+                                              }
+                                          }
+
+                                      }
+                                      //yearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearlyyearly
+                                  }else    if(installementtype == 'yearly'){
 n = parseInt(dayDifference/365);
 $scope.noofinstallement = n;
 console.log(Math.ceil(n));
+
+                                      if (inputtype == 'userdefined') {
+                                          console.log(interestamount);
+                                          console.log(loan_amount);
+                                          var installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                                          console.log((loan_amount + interestamount) / n);
+                                          $scope.installement_amount = (parseInt(loan_amount) + parseInt(interestamount)) / n;
+                                          var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                          for (var i = 0; i < n; i++) {
+                                              startdate.setDate(startdate.getDate() + parseInt(365));
+                                              var dd = startdate.getDate();
+                                              var mm = startdate.getMonth() + 1;
+                                              var y = startdate.getFullYear();
+                                              var startdates = mm + '/' + dd + '/' + y;
+                                              mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                          }
+                                          if ($http.post('/api/loanusers', {
+                                              'loan_id': $scope.loan_id,
+                                              'loan_amount': $scope.loan_amount,
+                                              'enddate': $scope.enddate,
+                                              'startdate': $scope.startdate,
+                                              'installementtype': $scope.installementtype,
+                                              'noofinstallement': $scope.noofinstallement,
+                                              'interest': $scope.interest,
+                                              'cid': JSON.stringify(cid),
+                                              'dayDifference': $scope.dayDifference,
+                                              'trepayamount': $scope.trepayamount
+
+
+                                          })
+                                              .then(function (response) {
+
+                                                  var host = $window.location.host;
+                                                  var landingUrl = "http://" + host + "/userprofile1";
+                                                  //alert(landingUrl);
+                                                  $window.location.href = landingUrl;
+
+
+                                              })) {
+                                              if ($http.post('/api/insertmydate', {
+                                                  'loan_id': $scope.loan_id,
+                                                  'installement_amount': $scope.installement_amount,
+                                                  'mydate': mydate
+
+                                              })
+                                                  .then(function (response) {
+
+
+                                                  })) {
+                                              }
+                                          }
+                                      }
+                                  <
+                                      !--;
+                                  else
+                                      if (inputtype == 'predefined') {
+
+//var installement_amount= loan_amount/n;
+//console.log(installement_amount);
+//$scope.installement_amount = loan_amount/n;
+//} -->
+                                      else
+                                          if (inputtype == 'custom') {
+                                              console.log(interestamount);
+                                              var installement_amount = interestamount;
+                                              console.log(installement_amount);
+                                              $scope.installement_amount = interestamount;
 var mydate = [];
 
 //$scope.mydate = [];
 //alldates.push(new Date(date1));
-	for(var i=0; i<n;i++){
-startdate.setDate(startdate.getDate() + parseInt(365)); 
-    var dd = startdate.getDate();  
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	var startdates = mm + '/' + dd + '/' + y;
- mydate.push(startdates);
+                                              for(var i=0; i<n; i++){
+startdate.setDate(startdate.getDate() + parseInt(365));
+                                                  var dd = startdate.getDate();
+                                                  var mm = startdate.getMonth() + 1;
+                                                  var y = startdate.getFullYear();
+                                                  var startdates = mm + '/' + dd + '/' + y;
+                                                  mydate.push(startdates);
 //console.log(mydate.push(new Date(startdate)));
 }
- if($http.post('/api/loanusers', {
-            'loan_id' :$scope.loan_id,
-            'loan_amount': $scope.loan_amount,
-			'enddate': $scope.enddate,
-			'startdate': $scope.startdate,
-			'installementtype': $scope.installementtype,
-			'noofinstallement': $scope.noofinstallement,
-			'interest': $scope.interest,
-			'cid': JSON.stringify(cid),
-			'dayDifference': $scope.dayDifference,
-			'trepayamount': $scope.trepayamount
-			
-          
-        })
-		 .then(function (response) {
-              
-			   var host = $window.location.host;
-        var landingUrl = "http://" + host + "/userprofile1";
-        //alert(landingUrl);
-        $window.location.href = landingUrl;
-							
-				
-            })){
-			if($http.post('/api/insertmydate', {
-                    'loan_id': $scope.loan_id,
-'installement_amount': $scope.installement_amount,					
-            'mydate' : mydate
-            
-        })
-		 .then(function (response) {
-              
-    	
-				
-            })){}}
- }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-  //console.log(startdate);
- /* var numberOfDaysToAdd = 7;
- startdate.setDate(startdate.getDate() + parseInt(numberOfDaysToAdd)); 
-    var dd = startdate.getDate();
-    var mm = startdate.getMonth() + 1;
-    var y = startdate.getFullYear();
-	$scope.mydate = mm + '/' + dd + '/' + y;*/
-  //console.log(mydate);
- //console.log($scope.newdate);
-   
-		
- 
-  
-  }
-	$http.get('/api/registeruser', {
-						 						 
-					}).then(function (response) {
-					
-						$scope.newuser= response.data.report;
-						 $scope.cid = response.data.report[0].cid;
-						//var jsonCars = JSON.stringify(cars);
-		
+                                              if ($http.post('/api/loanusers', {
+                                                  'loan_id' :$scope.loan_id,
+                                                  'loan_amount': $scope.loan_amount,
+                                                  'enddate': $scope.enddate,
+                                                  'startdate': $scope.startdate,
+                                                  'installementtype': $scope.installementtype,
+                                                  'noofinstallement': $scope.noofinstallement,
+                                                  'interest': $scope.interest,
+                                                  'cid': JSON.stringify(cid),
+                                                  'dayDifference': $scope.dayDifference,
+                                                  'trepayamount': $scope.trepayamount
 
-	
-})
-   
-});
+
+                                              })
+                                                  .then(function (response) {
+
+                                                      var host = $window.location.host;
+                                                      var landingUrl = "http://" + host + "/userprofile1";
+                                                      //alert(landingUrl);
+                                                      $window.location.href = landingUrl;
+
+
+                                                  })){
+                                                  if($http.post('/api/insertmydate', {
+                                                      'loan_id': $scope.loan_id,
+                                                      'installement_amount': $scope.installement_amount,
+                                                      'mydate' : mydate
+
+                                                  })
+                                                      .then(function (response) {
+
+
+                                                      })){}}
+                                          } else {
+                                              var mydate = [];
+
+//$scope.mydate = [];
+//alldates.push(new Date(date1));
+                                              for (var i = 0; i < n; i++) {
+                                                  startdate.setDate(startdate.getDate() + parseInt(365));
+                                                  var dd = startdate.getDate();
+                                                  var mm = startdate.getMonth() + 1;
+                                                  var y = startdate.getFullYear();
+                                                  var startdates = mm + '/' + dd + '/' + y;
+                                                  mydate.push(startdates);
+//console.log(mydate.push(new Date(startdate)));
+                                              }
+                                              if ($http.post('/api/loanuserss', {
+                                                  'loan_id': $scope.loan_id,
+                                                  'loan_amount': $scope.loan_amount,
+                                                  'enddate': $scope.enddate,
+                                                  'startdate': $scope.startdate,
+                                                  'installementtype': $scope.installementtype,
+                                                  'noofinstallement': $scope.noofinstallement,
+
+                                                  'cid': JSON.stringify(cid),
+                                                  'dayDifference': $scope.dayDifference
+
+
+                                              })
+                                                  .then(function (response) {
+
+                                                      var host = $window.location.host;
+                                                      var landingUrl = "http://" + host + "/userprofile1";
+                                                      //alert(landingUrl);
+                                                      $window.location.href = landingUrl;
+
+
+                                                  })) {
+                                                  if ($http.post('/api/insertmydate', {
+                                                      'loan_id': $scope.loan_id,
+                                                      'installement_amount': $scope.installement_amount,
+                                                      'mydate': mydate
+
+                                                  })
+                                                      .then(function (response) {
+
+
+                                                      })) {
+                                                  }
+                                              }
+
+                                          }
+                                      }
+
+
+                                      //console.log(startdate);
+                                      /* var numberOfDaysToAdd = 7;
+                                      startdate.setDate(startdate.getDate() + parseInt(numberOfDaysToAdd));
+                                         var dd = startdate.getDate();
+                                         var mm = startdate.getMonth() + 1;
+                                         var y = startdate.getFullYear();
+                                         $scope.mydate = mm + '/' + dd + '/' + y;*/
+                                      //console.log(mydate);
+                                      console.log($scope.newdate);
+
+
+                                  }
+                                  $http.get('/api/registeruser', {}).then(function (response) {
+
+                                      $scope.newuser= response.data.report;
+                                      $scope.cid = response.data.report[0].cid;
+                                      //var jsonCars = JSON.stringify(cars);
+
+
+                                  })
+
+                              }
+                          );;
 
 </script>
 </body>

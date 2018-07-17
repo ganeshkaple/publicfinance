@@ -349,7 +349,7 @@ text-align: left;
 		<div id="menu">
          <aside class="menu-sidebar d-none d-lg-block sidebar-icon" style="position: fixed;">
             <div class="logo">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -373,7 +373,7 @@ text-align: left;
                         </li>
 						<li class="has-sub">
 						<li>
-                            <a href="expenses.html">
+                            <a href="expenses2.html">
                                 <i class="fas fa-calendar-alt"></i>Expenses</a>
                         </li>
 						</li>
@@ -398,7 +398,8 @@ text-align: left;
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <input class="au-input au-input--xl" type="text" name="search"
+                                       placeholder="Search customers" ng-model="searchText"/>
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -502,7 +503,11 @@ text-align: left;
             <!--heder end here-->
 <div id="readOne" style="display:block;">
 <ol class="breadcrumb" style="background-color:#F5F5F5;margin-left:30px;margin-right:30px;">
-                <li class="breadcrumb-item"><a href="main-page1.html">Home</a><i class="fa fa-angle-right"></i>Customer List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register1.html"><button class="btn  btn-primary" style="width:240px;">Add New Customer</button></a></li>
+    <li class="breadcrumb-item"><a href="dash.html">Home</a><i class="fa fa-angle-right"></i>Customer
+        List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                href="register1.html">
+            <button class="btn  btn-primary" style="width:240px;">Add New Customer</button>
+        </a></li>
        </ol>
 		
 		
@@ -513,8 +518,8 @@ text-align: left;
 				<div class="agile-tables">
 					<div class="w3l-table-info card10">
 					  <div class="row" ng-repeat="y in reg | filter:searchText">
-							  
-									<div class="card">
+
+                          <div class="card" ng-click="readOne(y.cid)" onclick="notreadOne()">
 						  <div class="container" style="padding:14px 12px;">
                             <div class="row">
 								 <div class="col-md-4 table-img"> 
@@ -525,9 +530,9 @@ text-align: left;
 								 </div>
 								 <div class="col-md-4">
                                     <br/>
-								 <h4><a ng-click="readOne(y.cid)" onclick="notreadOne()">{{y.fullname}}</a></h4> 
-								
-								<p>Received Amount{{re1}}</p>
+                                     <h4>{{y.fullname}}</h4>
+
+                                     <p>Received Amount{{re1}}</p>
 								
 								<p>{{y.receivedamt}}</p>
 								
@@ -557,7 +562,10 @@ text-align: left;
 			</div>
 			<div id="notreadOne" style="display:none;">
 			<ol class="breadcrumb" style="background-color:#F5F5F5;margin-left:30px;margin-right:30px;">
-                <li class="breadcrumb-item"><a href="main-page1.html">Home</a><i class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i>User Registration</li>
+                <li class="breadcrumb-item"><a href="dash.html">Home</a><i
+                        class="fa fa-angle-right"></i>Forms <i class="fa fa-angle-right"></i>User
+                    Registration
+                </li>
 
  		       </ol>
 <!--grid-->
@@ -591,7 +599,10 @@ text-align: left;
   <div class="row" ng-repeat="r in reg1">
 <div class="card2" style="width:540px;margin-left:100px;">
   <div class="container1" style="width:540px;height:220px;">
-    <h3 style="color:#1abc9c;" ><b>Loan A/c No:</b>&nbsp;&nbsp;<a ng-click="install(r.loan_id)" onclick="myrec()">{{r.loan_id}}</a></h3>
+      <h3 style="color:#1abc9c;"><b>Loan A/c No:</b>&nbsp;&nbsp;<a href="#"
+                                                                   ng-click="install(r.loan_id)"
+                                                                   onclick="myrec()">{{r.loan_id}}</a>
+      </h3>
 <div class="row">
  <div class="col-sm-3"> 	
     <p>&nbsp;<i class="fa fa-calendar"></i>&nbsp;&nbsp; {{r.startdate | date:'medium'}} </p> 
@@ -616,25 +627,72 @@ text-align: left;
 </div>
    
 		 	      <div  id="show" style="display:none;" >
-    <div class="card" style="height:250px;">
-     
-    
-       <form>
-	  <input type="text"  ng-model="mydate"  class="form-control">
-	   <input type="text" ng-model="installement_amount" class="form-control">
-	    <input type="text" ng-model="loan_id" class="form-control">
+                      <div class="container1">
+                          <div class="modal fade" id="myModal" role="dialog">
+                              <div class="modal-dialog">
 
-	   
-	  
-  <br/>
-                    <button class="btn" type="submit">Save</button>
-					<button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
-                    <button class="btn" type="button" ng-click="remove(z.installement_id)">Delete</button>
-              
-	   </form>
-	
+                                  <!-- Modal content-->
+                                  <div class="modal-content"
+                                       style="margin-left:340px;margin-top:160px;">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">
+                                              &times;
+                                          </button>
 
-    </div>
+                                      </div>
+                                      <div class="modal-body">
+                                          <div class="form-group">
+                                              <div class="input-group">
+                                                  <div class="input-group-addon">
+                                                      <i class="fa fa-rupee"
+                                                         style="font-size:18px;"></i>
+                                                  </div>
+                                                  <input type="text" ng-model="mydate"
+                                                         class="form-control">
+                                                  <input type="text" ng-model="installement_amount"
+                                                         class="form-control">
+                                                  <input type="text" ng-model="loan_id"
+                                                         class="form-control">
+                                              </div>
+                                          </div>
+
+
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button class="btn btn-primary" type="submit">Save
+                                          </button>
+                                          <button class="btn btn-success" type="submit"
+                                                  ng-click="updateProduct()" onclick="update()">
+                                              Update
+                                          </button>
+                                          <button class="btn btn-danger" type="button"
+                                                  ng-click="remove(z.installement_id)">Delete
+                                          </button>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+                      <!--  <div class="card" style="height:250px;">
+
+
+                          <form>
+                         <input type="text"  ng-model="mydate"  class="form-control">
+                          <input type="text" ng-model="installement_amount" class="form-control">
+                           <input type="text" ng-model="loan_id" class="form-control">
+
+
+
+                     <br/>
+                                       <button class="btn" type="submit">Save</button>
+                                       <button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
+                                       <button class="btn" type="button" ng-click="remove(z.installement_id)">Delete</button>
+
+                          </form>
+
+
+                       </div> -->
   </div> 	                      
 
 <div id="update" style="display:none;"></div>                    
@@ -655,8 +713,11 @@ text-align: left;
 	<p>Recevied on this week sun</p>
 	</td>
 	
- <td> 
-	 <button type="button" class=""  style="background-color: red;color: white;"   ng-click="show(k.installement_id)"  onclick="show()">PAY</button>
+ <td>
+     <button type="button" style="font-size:10px;margin-top:15px;background-color: red;"
+             class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"
+             ng-click="show(k.installement_id)" onclick="show()">PAY
+     </button>
 	
  
                         </tr>
@@ -686,8 +747,10 @@ text-align: left;
 	<p>Recevied on this week sun</p>
 	</td>
 	
- <td> 
-	 <button type="button" style="background-color: #4CAF50;color:white; "  >PAID</button>
+ <td>
+     <button type="button" class="btn btn-info btn-lg "
+             style="background-color: #4CAF50;color:white;margin-top:15px;font-size:10px">PAID
+     </button>
 	</td>
 	
  </tr>

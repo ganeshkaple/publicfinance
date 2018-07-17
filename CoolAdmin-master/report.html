@@ -33,7 +33,19 @@
 	 <script src="https://rawgithub.com/rendro/easy-pie-chart/master/dist/angular.easypiechart.js"></script>
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <script data-require="angular.js@*" data-semver="1.2.1"
+            src="http://code.angularjs.org/1.2.1/angular.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <script>
+        $(function () {
+            if (!Modernizr.inputtypes.date) {
+                $('input[type=date]').datepicker({
+                        dateFormat: 'yy-mm-dd'
+                    }
+                );
+            }
+        });
+    </script>
 </head>
 
 <body class="animsition">
@@ -161,7 +173,7 @@
 		<div id="menu">
         <aside class="menu-sidebar d-none d-lg-block sidebar-icon" style="position: fiexd;">
             <div class="logo">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -185,7 +197,7 @@
                         </li>
 						<li class="has-sub">
 						<li>
-                            <a href="expenses.html">
+                            <a href="expenses2.html">
                                 <i class="fas fa-calendar-alt"></i>Expenses</a>
                         </li>
 						</li>
@@ -423,8 +435,9 @@
                         </div>
                          <div class="row" >
                             <div class="col-lg-12">
-                               
-                                <div class="table-responsive table--no-card m-b-40" id="all" style="display:none">
+
+                                <div class="table-responsive table--no-card m-b-40" id="all"
+                                     style="display:none;">
                                 <h3>All Amount Details</h3>
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -454,7 +467,7 @@
                             </div>
                             
                         </div>
-						 <div class="row" >
+                        <div class="row">
                             <div class="col-lg-12">
                                
                                 <div class="table-responsive table--no-card m-b-40" id="lent" style="display:none">
@@ -463,6 +476,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
+                                                <th>Customer Name</th>
                                                 <th>Account Number</th>
                                                 <th>Lent Amount</th>
                                             </tr>
@@ -470,6 +484,7 @@
                                         <tbody>
                                             <tr ng-repeat="x in lent">
                                                 <td>{{x.startdate | date:'medium'}}</td>
+                                                <td>{{x.fullname}}</td>
                                                 <td>{{x.loan_id}}</td>
                                                 <td>{{x.loan_amount}}</td>
                                             </tr>

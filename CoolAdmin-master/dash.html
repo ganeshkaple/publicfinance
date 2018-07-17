@@ -17,7 +17,8 @@
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap CSS-->
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
@@ -38,33 +39,143 @@
 	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#table').basictable();
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-      $('#table-breakpoint').basictable({
-        breakpoint: 768
-      });
+        /* The Modal (background) */
+        .modal1 {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
 
-      $('#table-swap-axis').basictable({
-        swapAxis: true
-      });
+        /* Modal Content */
+        .modal-content1 {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
 
-      $('#table-force-off').basictable({
-        forceResponsive: false
-      });
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-      $('#table-no-resize').basictable({
-        noResize: true
-      });
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-      $('#table-two-axis').basictable();
+        .dropdown {
+            position: relative;
+            display: block;
+        }
 
-      $('#table-max-height').basictable({
-        tableWrapper: true
-      });
-    });
+        .dropdown-content {
+            display: block;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 260px 16px -76px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            position: fixed;
+        }
+    </style>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal1');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn2");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal1.style.display = "block";
+        };
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal1.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal1.style.display = "none";
+            }
+        }
 </script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
     <link href="css/theme.css" rel="stylesheet" media="all">
     <style>
 .card {
@@ -209,6 +320,33 @@ margin-right: 30px;
  margin-left:30px;
 }
 </style>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </head>
 
 <body class="animsition">
@@ -221,7 +359,7 @@ margin-right: 30px;
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="dash.html">
                             <img src="images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -338,7 +476,7 @@ margin-right: 30px;
 		<div class="sidebar-menu">
       <aside class="menu-sidebar d-none d-lg-block sidebar-icon" id="menu">
             <div class="logo" class="sidebar-icon">
-                <a href="#">
+                <a href="dash.html">
                     <img src="images/icon/logo.png" alt="Cool Admin" />
                 </a>
             </div>
@@ -362,7 +500,7 @@ margin-right: 30px;
                         </li>
 						<li class="has-sub">
 						<li>
-                            <a href="expenses.html">
+                            <a href="expenses2.html">
                                 <i class="fas fa-calendar-alt"></i>Expenses</a>
                         </li>
 						</li>
@@ -393,49 +531,41 @@ margin-right: 30px;
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
                             </form>
+
                             <div class="header-button">
                                 <div class="noti-wrap">
-                                 
                                     <div class="noti__item js-item-menu">
-                                        <i class="zmdi zmdi-notifications"></i>
-                                        <span class="quantity">3</span>
-                                        <div class="notifi-dropdown js-dropdown  dropdown-toggle"data-toggle="dropdown" aria-expanded="false">
-                                            <div class="notifi__title">
-                                                <p>You have 3 Notifications</p>
-                                            </div>
-                                            <div class="notifi__item">
+                                        <div class="dropdown">
+
+
+                                            <i class="zmdi zmdi-notifications"></i>
+                                            <a href="" ng-click="updatenote()"
+                                               style="position:fixed"><span class="quantity"
+                                                                            ng-repeat="y in notification[0]"
+                                                                            ng-click="y.cid=y.cid-y.cid"
+                                                                            onclick="notifybtn()">{{y.cid}}</span></a>
+                                            <div id="btn" style="display:none;">
+                                                <div class="dropdown-content"
+                                                     onclick="closeDialog()">
+                                                    <div class="notifi__item"
+                                                         ng-repeat="y in notification[1]">
                                                 <div class="bg-c1 img-cir img-40">
                                                     <i class="zmdi zmdi-email-open"></i>
                                                 </div>
                                                 <div class="content">
-                                                    <p>You got a email notification</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c2 img-cir img-40">
-                                                    <i class="zmdi zmdi-account-box"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>Your account has been blocked</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
-                                                </div>
-                                            </div>
-                                            <div class="notifi__item">
-                                                <div class="bg-c3 img-cir img-40">
-                                                    <i class="zmdi zmdi-file-text"></i>
-                                                </div>
-                                                <div class="content">
-                                                    <p>You got a new file</p>
-                                                    <span class="date">April 12, 2018 06:50</span>
+                                                    <p>{{y.fullname }}</p></li>
+                                                    <span class="date">{{y.mobile}}</span></li>
                                                 </div>
                                             </div>
                                             <div class="notifi__footer">
                                                 <a href="#">All notifications</a>
                                             </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
-                                </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -491,7 +621,7 @@ margin-right: 30px;
 			<div id="readOne" style="display:block">
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                    <div class="container-fluid">
+                    <div class="container-fluid" style="margin-top:-50px;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="overview-wrap">
@@ -509,11 +639,12 @@ margin-right: 30px;
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="fa fa-sort-amount-asc"
+                                                   style="font-size:56px;"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>10368</h2>
-                                                <span>members online</span>
+                                                <h2>{{pie.LAmount}}</h2>
+                                                <span>Loan Amount</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -530,8 +661,8 @@ margin-right: 30px;
                                                 <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{{pie.LAmount}}</h2>
-                                                <span>Loan Amount</span>
+                                                <h2>{{pie.RAmount}}</h2>
+                                                <span>Received Amount</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -547,11 +678,12 @@ margin-right: 30px;
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-calendar-note"></i>
+                                                <i class="material-icons">call_received</i>
                                             </div>
                                             <div class="text">
-                                                <h2>{{pie.RAmount}}</h2>
-                                                <span>Received Amount</span>
+                                                <h2><i class="fa fa-rupee"></i>{{pie.LAmount+(pie.LAmount-pie.RAmount)}}
+                                                </h2>
+                                                <span>total earnings</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -565,11 +697,12 @@ margin-right: 30px;
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-money"></i>
+                                                <i class="fa fa-rupee"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>${{pie.LAmount+(pie.RAmount-pie.LAmount)}}</h2>
-                                                <span>total earnings</span>
+                                                <h2><i class="fa fa-rupee"></i>{{pie.LAmount+(pie.RAmount-pie.LAmount)}}
+                                                </h2>
+                                                <span>Expenditure</span>
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -581,51 +714,91 @@ margin-right: 30px;
                            
                         </div>
 						</div>
-						<div id="update" style="display:none;"></div>
-						<div  id="show" style="display:none;" >
-    <div class="card" style="height:250px;">
-     
-    
-       <form>
-	  <input type="text"  ng-model="mydate"  class="form-control">
-	   <input type="hidden" ng-model="installement_amount" class="form-control">
-	    <input type="hidden" ng-model="loan_id" class="form-control">
 
-	   
-	  
-  <br/>
-                    <button class="btn" type="submit">Save</button>
-					<button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
-                    <button class="btn" type="button" ng-click="remove()">Delete</button>
-              
-	   </form>
-	
 
-    </div>
-  </div> 
-  
-						<div class="col-sm-12 col-md-6 inbox-right scroll card1" style="border : 1px color:#ffffff;  solid; overflow: auto; height: 600px;">
-                            
-							<div class="col-sm-12 col-lg-6">
+                            <div class="col-sm-12 col-md-6 inbox-right scroll card1"
+                                 style="border : 1px color:#ffffff;  solid; overflow: auto; height: 600px;">
+                                <div id="update" style="display:none;"></div>
+
+                                <div  id="show" style="display:none;" >
+
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+
+                                            <div class="modal-body">
+                                                <p>Delay Installment Date.</p>
+                                                <input type="text" ng-model="mydate"
+                                                       class="form-control">
+                                                <input type="hidden" ng-model="installement_amount"
+                                                       class="form-control">
+                                                <input type="hidden" ng-model="loan_id"
+                                                       class="form-control">
+                                                <br/>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" type="submit"
+                                                        ng-click="updateProduct()"
+                                                        onclick="update()">Update
+                                                </button>
+
+                                                <button class="btn btn-danger"
+                                                        onclick="closeDialog()">cancel
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- <div class="modal-content">
+                                       <form>
+                                           <span class="close">&times;</span>
+                                      <input type="text"  ng-model="mydate"  class="form-control">
+                                       <input type="hidden" ng-model="installement_amount" class="form-control">
+                                        <input type="hidden" ng-model="loan_id" class="form-control">
+                                            <br/>
+                                        <button class="btn" type="submit">Save</button>
+                                        <button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
+                                        <button class="btn" type="button" ng-click="remove()">Delete</button>
+                                        <button class="btn btn-danger" onclick="closeDialog()">cancel</button>
+
+                                      </form>
+
+
+                                        </div> -->
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
                           
 									<div class="card" ng-repeat="x in newuser">
 									  
 									  <div class="container">
 									  <div class="row">
 									  <div class="col-md-2 table-img" style="margin-top:26px;"><i class="fa fa-user-circle-o" style="font-size:38px;"></i></div>
-									  <div class="col-md-4"><p style="margin-top:20px;"><b><a ng-click="readOne(x.loan_id)" onclick="notreadOne()">{{x.loan_id}}</a></b><p><i class="fa fa-calendar"></i> {{x.mydate | date}}</p></p> 
-										</div>
+                                          <div class="col-md-4"><p style="margin-top:20px;"><b><a
+                                                  ng-click="readOne(x.loan_id)"
+                                                  onclick="notreadOne()">{{x.loan_id}}</a></b>
+                                              <p><i class="fa fa-calendar"></i> {{x.mydate}}</p></p>
+                                          </div>
 									
 									  <div class="col-md-2 "> <p style="margin-top:32px;">{{x.installement_amount}}</p></div>
 									  <div class="col-md-4">  
 							<input type="hidden" ng-model="loan_id">
                             <input type="hidden" ng-model="installement_amount">
                             <input type="hidden" ng-model="installement_id">  							
-                            <input type="hidden" ng-model="mydate"> 
-							
-							   <button type="button" ng-click="show(x.installement_id)"  onclick="show()" class="btn btn-danger" style="height:35px;width:109px; margin-bottom:12px;">Delay</button><br/>  
-							   <button type="submit" ng-click="updateProductnew()"  class="btn btn-success">Complete</button> 
-                            </div>
+                            <input type="hidden" ng-model="mydate">
+
+                                          <button type="button" ng-click="show(x.installement_id)"
+                                                  onclick="show()" class="btn btn-danger"
+                                                  style="height:35px;width:109px; font-size:15px; margin-top:15px;margin-bottom:8px;"
+                                                  data-toggle="modal" data-target="#myModal">Delay
+                                          </button>
+                                          <button type="submit" ng-click="updateProductnew()"
+                                                  style="height:35px;width:109px; font-size:15px;margin-bottom:8px;"
+                                                  class="btn btn-success">Complete
+                                          </button>
+                                      </div>
 										
 									  </div>
 									  </div>
@@ -708,31 +881,39 @@ margin-right: 30px;
 
 
 </div>
-   
-		 	      <div  id="show" style="display:none;" >
-    <div class="card" style="height:250px;">
-     
-    
-       <form>
-	  <input type="text"  ng-model="mydate"  class="form-control">
+
+      <div id="shows" style="display:none;">
+          <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+
+                  <div class="modal-body">
+                      <p>Delay Installment Date.</p>
+                      <input type="text" ng-model="mydate" class="form-control">
 	   <input type="text" ng-model="installement_amount" class="form-control">
 	    <input type="text" ng-model="loan_id" class="form-control">
 
-	   
-	  
-  <br/>
-                    <button class="btn" type="submit">Save</button>
-					<button class="btn" type="submit" ng-click="updateProduct()" onclick="update()">Update</button>
-                    <button class="btn" type="button" ng-click="remove(z.installement_id)">Delete</button>
-              
-	   </form>
-	
+                      <br/>
 
-    </div>
-  </div> 	                      
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn btn-primary" type="submit" ng-click="updateProduct()"
+                              onclick="update()">Update
+                      </button>
+                      <button class="btn btn-danger" type="button"
+                              ng-click="remove(z.installement_id)">Delete
+                      </button>
+                      <button class="btn btn-danger" onclick="closeDialog()">cancel</button>
+                  </div>
+              </div>
 
-<div id="update" style="display:none;"></div>                    
-<div id="rec" style="display:none;">
+          </div>
+
+      </div>
+
+      <div id="updates" style="display:none;"></div>
+      <div id="rec" style="display:none;">
 <div class="col-sm-8 tab-content tab-content-in w3">
 
   <div class="inbox-right scroll" style=" width:570px;height:330px;margin-left:70px;margin-top:-13px; margin-bottom:25px;background-color:#ffffff;overflow: auto;">
@@ -749,8 +930,11 @@ margin-right: 30px;
 	<p>Recevied on this week sun</p>
 	</td>
 	
- <td> 
-	 <button type="button" class=""  style="background-color: red;color: white;"   ng-click="show(k.installement_id)"  onclick="show()">PAY</button>
+ <td>
+     <button type="button" class="btn btn-danger"
+             style="background-color: red;color: white;font-size:10px;"
+             ng-click="show(k.installement_id)" onclick="shows()">pay
+     </button>
 	
  
                         </tr>
@@ -897,7 +1081,7 @@ margin-right: 30px;
 
 <script>
 var app = angular.module('app', ['easypiechart']);
-app.controller('chartCtrl', function ($scope,  $http, $window, $timeout) {
+app.controller('chartCtrl', function ($scope, $filter, $http, $window, $timeout) {
  $scope.percent = 0;
         $scope.options = {
                  animate:{
@@ -1038,7 +1222,7 @@ $http.get('/notification', {
 		$scope.installement_id = response.data.product[0].installement_id;
 			$scope.loan_id = response.data.product[0].loan_id;
 				$scope.mydate = response.data.product[0].mydate;
-
+            $scope.mydate = $filter('date')($scope.mydate, "dd/MM/yyyy");
 	$scope.installement_amount = response.data.product[0].installement_amount;
 
 	
@@ -1056,7 +1240,7 @@ $http.get('/notification', {
 		$scope.installement_id = response.data.product[0].installement_id;
 			$scope.loan_id = response.data.product[0].loan_id;
 				$scope.mydate = response.data.product[0].mydate;
-
+            $scope.mydate = $filter('date')($scope.mydate, "dd/MM/yyyy");
 	$scope.installement_amount = response.data.product[0].installement_amount;
 
 	
@@ -1082,7 +1266,7 @@ $http.get('/notification', {
 		$scope.installement_id = response.data.product[0].installement_id;
 			$scope.loan_id = response.data.product[0].loan_id;
 				$scope.mydate = response.data.product[0].mydate;
-
+            $scope.mydate = $filter('date')($scope.mydate, "dd/MM/yyyy");
 	$scope.installement_amount = response.data.product[0].installement_amount;
 			//$scope.update = response.data.product;
 						//var jsonCars = JSON.stringify(cars);
@@ -1112,7 +1296,7 @@ $scope.updateProductnew = function () {
 		$scope.installement_id = response.data.report[0].installement_id;
 			$scope.loan_id = response.data.report[0].loan_id;
 				$scope.mydate = response.data.report[0].mydate;
-
+            $scope.mydate = $filter('date')($scope.mydate, "dd/MM/yyyy");
 	$scope.installement_amount = response.data.report[0].installement_amount;
 	//$scope.installement_id = response.data.installement_id;
 			//$scope.update = response.data.product;
@@ -1240,6 +1424,14 @@ function update() {
 document.getElementById('update').style.display = 'none';
 
     }
+
+
+}
+
+function closeDialog() {
+    document.getElementById('show').style.display = 'none';
+    document.getElementById('shows').style.display = 'none';
+    document.getElementById('btn').style.display = 'none';
 }
 function updates() {
     var x = document.getElementById("updates");
@@ -1284,8 +1476,17 @@ document.getElementById('readOne').style.display = 'none';
 	document.getElementById('readOne').style.display = 'none';
 
 
-
     }
+}
+</script>
+<script>
+    function notifybtn() {
+        var x = document.getElementById("btn");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
 }
 </script>
 <script src="js/jquery.nicescroll.js"></script>
