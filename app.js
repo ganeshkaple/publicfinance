@@ -4391,7 +4391,7 @@ app.post('/mobile/newexpenses', function (req, res) {
         }
     });
 });
-var server = app.listen(3000, function () {
+var server = app.listen(3343, function () {
 
     var host = 'ec2-54-164-191-128.compute-1.amazonaws.com';
     var port = server.address().port;
