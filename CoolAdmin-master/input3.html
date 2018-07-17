@@ -315,7 +315,7 @@
                                     <div class="card-header">
                                         <div ng-repeat="newuser in newuser"><b><i
                                                 class="fa fa-user"></i>&nbsp;{{newuser.fullname}}
-                                            <b></div>
+                                        </b></div>
                                     </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" class="">
@@ -490,12 +490,14 @@
                                             <div class="form-actions form-group">
                                                 <button type="submit"  ng-click="createLoan()" class="btn btn-success btn-sm">Submit</button>
                                             </div>
-                                    </div>
                                         </form>
                                     </div>
+
+                                    </div>
                                 </div>
+                        </section>
                             </div>
-            </section>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="copyright">
@@ -672,8 +674,7 @@ $scope.noofinstallement = n;
                   }
               }
           }
-      <
-          !--;
+
       else
           if (inputtype == 'predefined') {
 
@@ -681,6 +682,7 @@ $scope.noofinstallement = n;
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+          }
           else
               if (inputtype == 'custom') {
                   console.log(interestamount);
@@ -845,8 +847,7 @@ if($http.post('/api/loanusers', {
 
         })){}}
               }
-          <
-              !--;
+
           else
               if (inputtype == 'predefined') {
 
@@ -854,6 +855,7 @@ if($http.post('/api/loanusers', {
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+              }
               else
                   if (inputtype == 'custom') {
                       console.log(interestamount);
@@ -1018,8 +1020,7 @@ startdate.setDate(startdate.getDate() + parseInt(1));
 
                               })){}}
                   }
-              <
-                  !--;
+
               else
                   if (inputtype == 'predefined') {
 
@@ -1027,6 +1028,7 @@ startdate.setDate(startdate.getDate() + parseInt(1));
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+                  }
                   else
                       if (inputtype == 'custom') {
                           console.log(interestamount);
@@ -1192,8 +1194,7 @@ console.log(Math.ceil(n));
                               }
                           }
                       }
-                  <
-                      !--;
+
                   else
                       if (inputtype == 'predefined') {
 
@@ -1201,6 +1202,7 @@ console.log(Math.ceil(n));
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+                      }
                       else
                           if (inputtype == 'custom') {
                               console.log(interestamount);
@@ -1362,8 +1364,7 @@ startdate.setDate(startdate.getDate() + parseInt(60));
 
                                       })){}}
                           }
-                      <
-                          !--;
+
                       else
                           if (inputtype == 'predefined') {
 
@@ -1371,6 +1372,7 @@ startdate.setDate(startdate.getDate() + parseInt(60));
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+                          }
                           else
                               if (inputtype == 'custom') {
                                   console.log(interestamount);
@@ -1536,15 +1538,15 @@ console.log(Math.ceil(n));
                                       }
                                   }
                               }
-                          <
-                              !--;
-                          else
+
+                              else
                               if (inputtype == 'predefined') {
 
 //var installement_amount= loan_amount/n;
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+                              }
                               else
                                   if (inputtype == 'custom') {
                                       console.log(interestamount);
@@ -1706,16 +1708,15 @@ if($http.post('/api/loanusers', {
 
         })){}}
                                   }
-                              <
-                                  !--;
-                              else
+
+                                  else
                                   if (inputtype == 'predefined') {
 
 //var installement_amount= loan_amount/n;
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
-                                  else
+                                  } else
                                       if (inputtype == 'custom') {
                                           console.log(interestamount);
                                           var installement_amount = interestamount;
@@ -1880,15 +1881,15 @@ console.log(Math.ceil(n));
                                               }
                                           }
                                       }
-                                  <
-                                      !--;
-                                  else
+
+                                      else
                                       if (inputtype == 'predefined') {
 
 //var installement_amount= loan_amount/n;
 //console.log(installement_amount);
 //$scope.installement_amount = loan_amount/n;
 //} -->
+                                      }
                                       else
                                           if (inputtype == 'custom') {
                                               console.log(interestamount);
@@ -1993,19 +1994,18 @@ startdate.setDate(startdate.getDate() + parseInt(365));
                                           }
                                       }
 
-
-                                      //console.log(startdate);
-                                      /* var numberOfDaysToAdd = 7;
+      console.log(startdate);
+      var numberOfDaysToAdd = 7;
                                       startdate.setDate(startdate.getDate() + parseInt(numberOfDaysToAdd));
                                          var dd = startdate.getDate();
                                          var mm = startdate.getMonth() + 1;
                                          var y = startdate.getFullYear();
-                                         $scope.mydate = mm + '/' + dd + '/' + y;*/
-                                      //console.log(mydate);
+      $scope.mydate = mm + '/' + dd + '/' + y;
+      console.log(mydate);
                                       console.log($scope.newdate);
 
 
-                                  }
+  };
                                   $http.get('/api/registeruser', {}).then(function (response) {
 
                                       $scope.newuser= response.data.report;
@@ -2014,9 +2014,9 @@ startdate.setDate(startdate.getDate() + parseInt(365));
 
 
                                   })
+});
 
-                              }
-                          );;
+
 
 </script>
 </body>
