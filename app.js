@@ -4397,7 +4397,7 @@ app.post('/mobile/newexpenses', function (req, res) {
 });
 var server = app.listen(3306, function () {
 
-    var host = 'ec2-34-224-169-153.compute-1.amazonaws.com';
+    var host = 'ec2-54-164-191-128.compute-1.amazonaws.com';
     var port = server.address().port;
 
     console.log("dummy app listening at: " + host + ":" + port);
