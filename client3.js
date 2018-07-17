@@ -20,7 +20,7 @@ connection.connect(function(err) {
 	  if (err) throw err;
 
   console.log('You are now connected with mysql database...')
-})
+});
 var engines = require('consolidate');
 
 app.set('CoolAdmin-master', __dirname + '/CoolAdmin-master');
