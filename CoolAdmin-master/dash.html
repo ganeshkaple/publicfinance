@@ -1539,7 +1539,9 @@
 
 	// Returns the signed-in user's display name.
 	function getUserName() {
-		return firebase.auth().currentUser.displayName;
+		var string = firebase.auth().currentUser.displayName;
+		console.log(string);
+		return string;
 	}
 
 	// Returns true if a user is signed-in.
@@ -1634,8 +1636,7 @@
 		element.parentNode.MaterialTextfield.boundUpdateClassesHandler();
 	}
 
-</script>
-<script>
+
 	function update() {
 		var x = document.getElementById("update");
 		if (x.style.display === "none") {
