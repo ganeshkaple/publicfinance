@@ -366,10 +366,11 @@ app.controller('productCTRL', function ($scope, $http, $window) {
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			console.log('error is' + errorCode + ' and the reason is' + errorMessage);
+			alert('error is' + errorCode + ' and the reason is' + errorMessage);
 			var host = $window.location.host;
 			var landingUrl = "http://" + host + "/service";
 			//alert(landingUrl);
-			$window.location.href = landingUrl;
+			//$window.location.href = landingUrl;
 
 		});
 		/*if ($scope.user_name == 'admin' && $scope.password == 'admin') {
