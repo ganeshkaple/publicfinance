@@ -1566,8 +1566,8 @@
 		if (user) { // User is signed in!
 			console.log('Whats the data ' + user);
 			// Get the signed-in user's profile pic and name.
-			var profilePicUrl = user.photoURL;
-			var userName = user;
+			var profilePicUrl = getProfilePicUrl();
+			var userName = getUserName();
 			console.log('Whats the name ' + userName);
 			var profilePic = document.getElementById('profile_pic');
 			var userFullName = document.getElementById('full_name');
