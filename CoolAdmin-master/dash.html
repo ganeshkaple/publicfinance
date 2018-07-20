@@ -566,50 +566,59 @@ margin-right: 30px;
 
                                         </div>
                                     </div>
-                                <div class="account-wrap">
-                                    <div class="account-item clearfix js-item-menu">
-                                        <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                        </div>
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
+                                    <div ng-controller="productCTRL">
+                                        <div class="account-wrap">
+                                            <div class="account-item clearfix js-item-menu">
                                                 <div class="image">
-                                                    <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
-                                                    </a>
+                                                    <img ng-model="profile_pic"
+                                                         src="images/icon/avatar-01.jpg"
+                                                         alt="John Doe"/>
                                                 </div>
                                                 <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#">john doe</a>
-                                                    </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <a class="js-acc-btn" ng-model="full_name"
+                                                       href="#">john doe</a>
                                                 </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                <div class="account-dropdown js-dropdown">
+                                                    <div class="info clearfix">
+                                                        <div class="image">
+                                                            <a href="#">
+                                                                <img ng-model="profile_pic"
+                                                                     src="images/icon/avatar-01.jpg"
+                                                                     alt="John Doe"/>
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <h5 class="name">
+                                                                <a href="#" ng-model="full_name">john
+                                                                    doe</a>
+                                                            </h5>
+                                                            <span class="email"
+                                                                  ng-model="user_name">johndoe@example.com</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="account-dropdown__body">
+                                                        <div class="account-dropdown__item">
+                                                            <a href="#">
+                                                                <i class="zmdi zmdi-account"></i>Account</a>
+                                                        </div>
+                                                        <div class="account-dropdown__item">
+                                                            <a href="#">
+                                                                <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                        </div>
+                                                        <div class="account-dropdown__item">
+                                                            <a href="#">
+                                                                <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="account-dropdown__footer">
+                                                        <a href="#">
+                                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                                    </div>
                                                 </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1079,8 +1088,21 @@ margin-right: 30px;
 <script src="js/angular.min.js"></script>
 	  
 	  <!-- controller app -->
-
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 <script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyB-Jj6ROQeHsgFNyvF3W7OgOhV3b3Qi9CI",
+		authDomain: "financematic-c0778.firebaseapp.com",
+		databaseURL: "https://financematic-c0778.firebaseio.com",
+		projectId: "financematic-c0778",
+		storageBucket: "financematic-c0778.appspot.com",
+		messagingSenderId: "22199840658"
+	};
+	firebase.initializeApp(config);
+</script>
+<script>
+	initFirebaseAuth();
 var app = angular.module('app', ['easypiechart']);
 app.controller('chartCtrl', function ($scope, $filter, $http, $window, $timeout) {
  $scope.percent = 0;
