@@ -1564,8 +1564,8 @@
 	function authStateObserver(user) {
 		if (user) { // User is signed in!
 			// Get the signed-in user's profile pic and name.
-			var profilePicUrl = getProfilePicUrl();
-			var userName = getUserName();
+			var profilePicUrl = user.getCurrent().photoURL;
+			var userName = user.getCurrent().displayName;
 			var profilePic = document.getElementById('profile_pic');
 			var userFullName = document.getElementById('full_name');
 			var signOutButton = document.getElementById('signOut');
@@ -1573,7 +1573,7 @@
 			// Set the user's profile pic and name.
 
 			profilePic.style.backgroundImage = 'url(' + profilePicUrl + ')';
-			userFullName.textContent = userName;
+			userFullName.setText(userName);
 
 			// Show user's profile and sign-out button.
 			userFullName.removeAttribute('hidden');
