@@ -632,7 +632,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="account-dropdown__footer">
-                                                            <a href="#">
+                                                            <a id="signOut" href="#">
                                                                 <i class="zmdi zmdi-power"></i>Logout</a>
                                                         </div>
                                                     </div>
@@ -1566,6 +1566,7 @@
 			var userName = getUserName();
 			var profilePic = document.getElementById('profile_pic');
 			var userFullName = document.getElementById('full_name');
+			var signOutButton = document.getElementById('signOut');
 
 			// Set the user's profile pic and name.
 
