@@ -566,16 +566,17 @@ margin-right: 30px;
 
                                         </div>
                                     </div>
-                                    <div ng-controller="productCTRL">
+                                    <div>
                                         <div class="account-wrap">
                                             <div class="account-item clearfix js-item-menu">
                                                 <div class="image">
-                                                    <img ng-model="profile_pic"
+                                                    <img id="profile_pic" ng-model="profile_pic"
                                                          src="images/icon/avatar-01.jpg"
                                                          alt="John Doe"/>
                                                 </div>
                                                 <div class="content">
-                                                    <a class="js-acc-btn" ng-model="full_name"
+                                                    <a class="js-acc-btn" id="full_name"
+                                                       ng-model="full_name"
                                                        href="#">john doe</a>
                                                 </div>
                                                 <div class="account-dropdown js-dropdown">
@@ -1088,7 +1089,7 @@ margin-right: 30px;
 <script src="js/angular.min.js"></script>
 	  
 	  <!-- controller app -->
-<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
 <script>
 	// Initialize Firebase
 	var config = {
@@ -1481,8 +1482,8 @@ document.getElementById('updates').style.display = 'none';
 			// Get the signed-in user's profile pic and name.
 			var profilePicUrl = getProfilePicUrl();
 			var userName = getUserName();
-			var profilePic = $scope.profile_pic;
-			var userFullName = $scope.name;
+			var profilePic = document.getElementById('profile_pic');
+			var userFullName = document.getElementById('full_name');
 
 			// Set the user's profile pic and name.
 
